@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "998360563467",
+    "project_id": "samsung-innovation-campu-524eb",
+    "storage_bucket": "samsung-innovation-campu-524eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998360563467:android:26ff6e6cc9f1d2f83d2c0e",
+        "android_client_info": {
+          "package_name": "com.samsung.finalprojectsamsungtt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998360563467-t57v5phkbl3nrrjrtie9f9l920qh1r0a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.samsung.finalprojectsamsungtt",
+            "certificate_hash": "2215c8d597ca861257d277eb8b6488046e3be438"
+          }
+        },
+        {
+          "client_id": "998360563467-8llu7fao9iuqoavekko7m04oddef0ers.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfZLDRX91bieS2gVTEdTIoYxKSNY-goGM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998360563467-8llu7fao9iuqoavekko7m04oddef0ers.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
