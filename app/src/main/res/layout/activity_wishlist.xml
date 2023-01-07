@@ -6,54 +6,54 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/addAdminsText"
+        android:id="@+id/wishlistText"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:text="@string/wishlist"
         android:textAlignment="center"
         android:textSize="34sp"
-        android:text="@string/add_admins_text"
-        app:layout_constraintBottom_toTopOf="@+id/addAdminsGuideline2"
+        app:layout_constraintBottom_toTopOf="@+id/wishlistGuideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/addAdminsGuideline1" />
+        app:layout_constraintTop_toTopOf="@+id/wishlistGuideline1" />
 
 
     <ImageView
-        android:id="@+id/backAddAdmins"
+        android:id="@+id/backWishlist"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/addAdminsGuideline3"
+        app:layout_constraintBottom_toTopOf="@+id/wishlistGuideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/addAdminsGuideline2"
+        app:layout_constraintTop_toTopOf="@+id/wishlistGuideline2"
         app:srcCompat="@drawable/left_arrow" />
 
     <ListView
-        android:id="@+id/accountListView"
+        android:id="@+id/wishlistListView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addAdminsGuideline3" />
+        app:layout_constraintTop_toTopOf="@+id/wishlistGuideline3" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/addAdminsGuideline1"
+        android:id="@+id/wishlistGuideline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/addAdminsGuideline2"
+        android:id="@+id/wishlistGuideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.2" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/addAdminsGuideline3"
+        android:id="@+id/wishlistGuideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

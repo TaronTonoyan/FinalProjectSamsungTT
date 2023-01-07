@@ -6,122 +6,143 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/registerText"
+        android:id="@+id/accountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:text="@string/register_text"
         android:textAlignment="center"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/registerGuideline2"
+        app:layout_constraintBottom_toTopOf="@+id/accountGuideline1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/registerGuideline1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/returnToLoginPage"
+        android:id="@+id/backAccount"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/registerGuideline3"
+        app:layout_constraintBottom_toTopOf="@+id/accountGuideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/registerGuideline2"
+        app:layout_constraintTop_toTopOf="@+id/accountGuideline1"
         app:srcCompat="@drawable/left_arrow" />
 
-    <EditText
-        android:id="@+id/registerEmailAddress"
+    <TextView
+        android:id="@+id/accountEmailAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/registerGuideline4"
+        android:text="@string/register_text"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/accountGuideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/registerGuideline3" />
+        app:layout_constraintTop_toTopOf="@+id/accountGuideline2" />
 
     <EditText
-        android:id="@+id/registerPassword"
+        android:id="@+id/accountPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/new_password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/registerGuideline5"
+        app:layout_constraintBottom_toTopOf="@+id/accountGuideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/registerGuideline4" />
+        app:layout_constraintTop_toTopOf="@+id/accountGuideline3" />
 
     <EditText
-        android:id="@+id/confirmNewPassword"
+        android:id="@+id/accountNewPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/confirm_password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/registerGuideline6"
+        app:layout_constraintBottom_toTopOf="@+id/accountGuideline5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/registerGuideline5" />
+        app:layout_constraintTop_toTopOf="@+id/accountGuideline4" />
+
+    <EditText
+        android:id="@+id/accountAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:ems="10"
+        android:hint="@string/no_address"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/accountGuideline6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/accountGuideline5" />
 
     <Button
-        android:id="@+id/registerButton"
+        android:id="@+id/accountSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/register"
-        app:layout_constraintBottom_toTopOf="@+id/registerGuideline7"
+        android:text="@string/save"
+        app:layout_constraintBottom_toTopOf="@+id/accountGuideline7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/registerGuideline6" />
+        app:layout_constraintTop_toTopOf="@+id/accountGuideline6" />
+
+    <Button
+        android:id="@+id/accountDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/accountGuideline7" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/registerGuideline1"
+        android:id="@+id/accountGuideline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/registerGuideline2"
+        android:id="@+id/accountGuideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.2" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/registerGuideline3"
+        android:id="@+id/accountGuideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.3" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/registerGuideline4"
+        android:id="@+id/accountGuideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.4" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/registerGuideline5"
+        android:id="@+id/accountGuideline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/registerGuideline6"
+        android:id="@+id/accountGuideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.6" />
+        app:layout_constraintGuide_percent="0.8" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/registerGuideline7"
+        android:id="@+id/accountGuideline7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.7" />
+        app:layout_constraintGuide_percent="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

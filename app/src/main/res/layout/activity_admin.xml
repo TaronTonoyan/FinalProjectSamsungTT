@@ -9,7 +9,7 @@
         android:id="@+id/adminMainText"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="You are an admin"
+        android:text="@string/admin_text"
         android:textAlignment="center"
         android:textSize="48sp"
         app:layout_constraintBottom_toTopOf="@+id/AdminMainGuideline2"
@@ -21,31 +21,51 @@
         android:id="@+id/addAdmins"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Admins"
+        android:text="@string/add_admins_text"
         app:layout_constraintBottom_toTopOf="@+id/AdminMainGuideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/AdminMainGuideline3" />
 
     <Button
-        android:id="@+id/addActivity"
+        android:id="@+id/addProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Activity"
+        android:text="@string/add_products"
         app:layout_constraintBottom_toTopOf="@+id/AdminMainGuideline5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/AdminMainGuideline4" />
 
     <Button
-        android:id="@+id/logOutFromAdmin"
+        android:id="@+id/updateProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log Out"
+        android:text="@string/update_products"
         app:layout_constraintBottom_toTopOf="@+id/AdminMainGuideline6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/AdminMainGuideline5" />
+
+    <Button
+        android:id="@+id/deleteProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_products"
+        app:layout_constraintBottom_toTopOf="@+id/AdminMainGuideline7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/AdminMainGuideline6" />
+
+    <Button
+        android:id="@+id/logOutFromAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/log_out"
+        app:layout_constraintBottom_toTopOf="@+id/AdminMainGuideline8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/AdminMainGuideline7" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/AdminMainGuideline1"
@@ -59,7 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2" />
+        app:layout_constraintGuide_percent="0.3" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/AdminMainGuideline3"
@@ -88,5 +108,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.7" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/AdminMainGuideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/AdminMainGuideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,57 +6,74 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/addAdminsText"
+        android:id="@+id/galleryText"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:textAlignment="center"
         android:textSize="34sp"
-        android:text="@string/add_admins_text"
-        app:layout_constraintBottom_toTopOf="@+id/addAdminsGuideline2"
+        android:text="@string/gallery_text"
+        app:layout_constraintBottom_toTopOf="@+id/galleryGuideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/addAdminsGuideline1" />
+        app:layout_constraintTop_toTopOf="@+id/galleryGuideline1" />
 
 
     <ImageView
-        android:id="@+id/backAddAdmins"
+        android:id="@+id/backGallery"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/addAdminsGuideline3"
+        app:layout_constraintBottom_toTopOf="@+id/galleryGuideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/addAdminsGuideline2"
+        app:layout_constraintTop_toTopOf="@+id/galleryGuideline2"
         app:srcCompat="@drawable/left_arrow" />
 
     <ListView
-        android:id="@+id/accountListView"
+        android:id="@+id/galleryListView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/galleryGuideline4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/galleryGuideline3" />
+
+    <Button
+        android:id="@+id/sort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sort"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addAdminsGuideline3" />
+        app:layout_constraintTop_toTopOf="@+id/galleryGuideline4" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/addAdminsGuideline1"
+        android:id="@+id/galleryGuideline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/addAdminsGuideline2"
+        android:id="@+id/galleryGuideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.2" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/addAdminsGuideline3"
+        android:id="@+id/galleryGuideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/galleryGuideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

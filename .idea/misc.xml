@@ -5,9 +5,13 @@
       <map>
         <entry key="..\:/SIC/FinalProjectSamsungTT/app/src/main/res/layout/account_item.xml" value="0.25" />
         <entry key="..\:/SIC/FinalProjectSamsungTT/app/src/main/res/layout/activity_add_admins.xml" value="0.20863616930312098" />
+        <entry key="..\:/SIC/FinalProjectSamsungTT/app/src/main/res/layout/activity_add_console.xml" value="0.20863616930312098" />
+        <entry key="..\:/SIC/FinalProjectSamsungTT/app/src/main/res/layout/activity_add_movie.xml" value="0.20863616930312098" />
+        <entry key="..\:/SIC/FinalProjectSamsungTT/app/src/main/res/layout/activity_add_product.xml" value="0.20863616930312098" />
         <entry key="..\:/SIC/FinalProjectSamsungTT/app/src/main/res/layout/activity_admin.xml" value="0.20863616930312098" />
         <entry key="..\:/SIC/FinalProjectSamsungTT/app/src/main/res/layout/activity_login.xml" value="0.20863616930312098" />
         <entry key="..\:/SIC/FinalProjectSamsungTT/app/src/main/res/layout/activity_main.xml" value="0.20863616930312098" />
+        <entry key="..\:/SIC/FinalProjectSamsungTT/app/src/main/res/layout/activity_product_category.xml" value="0.19837537409149208" />
         <entry key="..\:/SIC/FinalProjectSamsungTT/app/src/main/res/layout/activity_register.xml" value="0.19837537409149208" />
         <entry key="..\:/SIC/FinalProjectSamsungTT/app/src/main/res/layout/gallery.xml" value="0.21784420289855072" />
         <entry key="..\:/SIC/FinalProjectSamsungTT/app/src/main/res/layout/register.xml" value="0.25416666666666665" />

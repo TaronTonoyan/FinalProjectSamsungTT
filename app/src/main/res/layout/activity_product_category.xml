@@ -6,122 +6,115 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/registerText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="@string/register_text"
+        android:id="@+id/productCategoryText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/registerGuideline2"
+        android:textSize="34sp"
+        android:text="@string/add_products_category"
+        app:layout_constraintBottom_toTopOf="@+id/productCategoryGuideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/registerGuideline1" />
+        app:layout_constraintTop_toTopOf="@+id/productCategoryGuideline1" />
 
     <ImageView
-        android:id="@+id/returnToLoginPage"
+        android:id="@+id/backProductCategory"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/registerGuideline3"
+        app:layout_constraintBottom_toTopOf="@+id/productCategoryGuideline3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/registerGuideline2"
+        app:layout_constraintTop_toTopOf="@+id/productCategoryGuideline2"
         app:srcCompat="@drawable/left_arrow" />
 
-    <EditText
-        android:id="@+id/registerEmailAddress"
+    <Button
+        android:id="@+id/addConsole"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/registerGuideline4"
+        android:text="@string/add_console"
+        app:layout_constraintBottom_toTopOf="@+id/productCategoryGuideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/registerGuideline3" />
-
-    <EditText
-        android:id="@+id/registerPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/new_password"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/registerGuideline5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/registerGuideline4" />
-
-    <EditText
-        android:id="@+id/confirmNewPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/confirm_password"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/registerGuideline6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/registerGuideline5" />
+        app:layout_constraintTop_toTopOf="@+id/productCategoryGuideline3" />
 
     <Button
-        android:id="@+id/registerButton"
+        android:id="@+id/addAccessory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/register"
-        app:layout_constraintBottom_toTopOf="@+id/registerGuideline7"
+        android:text="@string/add_accessory"
+        app:layout_constraintBottom_toTopOf="@+id/productCategoryGuideline5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/registerGuideline6" />
+        app:layout_constraintTop_toTopOf="@+id/productCategoryGuideline4" />
+
+    <Button
+        android:id="@+id/addGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_game"
+        app:layout_constraintBottom_toTopOf="@+id/productCategoryGuideline6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/productCategoryGuideline5" />
+
+    <Button
+        android:id="@+id/allCategories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/all"
+        app:layout_constraintBottom_toTopOf="@+id/productCategoryGuideline7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/productCategoryGuideline6" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/registerGuideline1"
+        android:id="@+id/productCategoryGuideline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/registerGuideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/registerGuideline3"
+        android:id="@+id/productCategoryGuideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.3" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/registerGuideline4"
+        android:id="@+id/productCategoryGuideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.4" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/registerGuideline5"
+        android:id="@+id/productCategoryGuideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/registerGuideline6"
+        android:id="@+id/productCategoryGuideline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.6" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/registerGuideline7"
+        android:id="@+id/productCategoryGuideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.7" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productCategoryGuideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

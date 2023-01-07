@@ -1,18 +1,20 @@
-package com.samsung.finalprojectsamsungtt;
+package com.samsung.finalprojectsamsungtt.models;
 
 import java.io.Serializable;
 
 public class Account implements Serializable {
-    private long id;
-    private String email;
+    private final long id;
+    private final String email;
     private String password;
     private int isAdmin;
+    private String address;
 
-    public Account(long id, String email, String password, int isAdmin) {
+    public Account(long id, String email, String password, int isAdmin, String address) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
+        this.address = address;
     }
 
     public long getId() {
@@ -29,6 +31,18 @@ public class Account implements Serializable {
 
     public int getIsAdmin() {
         return isAdmin;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public void setIsAdmin(boolean isAdmin) {

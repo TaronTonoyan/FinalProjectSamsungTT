@@ -1,46 +1,47 @@
-package com.samsung.finalprojectsamsungtt;
+package com.samsung.finalprojectsamsungtt.activities;
 
 
 import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+
+import com.samsung.finalprojectsamsungtt.DBShop;
+import com.samsung.finalprojectsamsungtt.R;
+import com.samsung.finalprojectsamsungtt.adapters.AccountAdapter;
+import com.samsung.finalprojectsamsungtt.models.Account;
 
 import java.util.ArrayList;
 
 
 public class AddAdminsActivity extends AppCompatActivity {
 
-    DBTickets DBConnector;
-    ListView list;
-    Button back;
+    private DBShop DBConnector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_admins);
-
-        list = findViewById(R.id.accountListView);
-        back = findViewById(R.id.backAddAdmins);
-        DBConnector = new DBTickets(this);
-        AccountAdapter adapter = new AccountAdapter(this, getAccounts());
-        list.setAdapter(adapter);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        initViews();
     }
 
-    Account[] getAccounts() {
+    private void initViews() {
+        ListView list = findViewById(R.id.accountListView);
+        ImageView back = findViewById(R.id.backAddAdmins);
+        DBConnector = new DBShop(this);
+        AccountAdapter adapter = new AccountAdapter(this, getAccounts());
+        list.setAdapter(adapter);
+
+        back.setOnClickListener(v -> finish());
+    }
+
+    private Account[] getAccounts() {
         ArrayList<Account> accountArr = DBConnector.selectAllAccounts();
         Account[] arr = new Account[accountArr.size()-1];
         
-        for (int i = 0; i < accountArr.size()-1; i++) {
+        for (int i = 0; i < arr.length; i++) {
             arr[i] = accountArr.get(i+1);
         }
 

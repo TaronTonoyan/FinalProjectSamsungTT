@@ -6,57 +6,76 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/addAdminsText"
+        android:id="@+id/confirmText"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:text="@string/confirm_text"
         android:textAlignment="center"
         android:textSize="34sp"
-        android:text="@string/add_admins_text"
-        app:layout_constraintBottom_toTopOf="@+id/addAdminsGuideline2"
+        app:layout_constraintBottom_toTopOf="@+id/confirmGuideline1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/addAdminsGuideline1" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/backAddAdmins"
+        android:id="@+id/backConfirm"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/addAdminsGuideline3"
+        app:layout_constraintBottom_toTopOf="@+id/confirmGuideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/addAdminsGuideline2"
+        app:layout_constraintTop_toTopOf="@+id/confirmGuideline1"
         app:srcCompat="@drawable/left_arrow" />
 
-    <ListView
-        android:id="@+id/accountListView"
+    <EditText
+        android:id="@+id/confirmAddress"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/confirmGuideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addAdminsGuideline3" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmGuideline2" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/addAdminsGuideline1"
+    <Button
+        android:id="@+id/confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
+        android:text="@string/checkout"
+        app:layout_constraintBottom_toTopOf="@+id/confirmGuideline4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmGuideline3" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/addAdminsGuideline2"
+        android:id="@+id/confirmGuideline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.2" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/addAdminsGuideline3"
+        android:id="@+id/confirmGuideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/confirmGuideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/confirmGuideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
