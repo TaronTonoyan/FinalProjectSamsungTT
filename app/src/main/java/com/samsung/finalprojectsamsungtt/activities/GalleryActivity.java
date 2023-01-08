@@ -18,8 +18,9 @@ import java.util.ArrayList;
 public class GalleryActivity extends AppCompatActivity {
 
     private DBShop DBConnector;
-    ListView list;
-    long id;
+    private ListView list;
+    private int sortCode;
+    private long id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class GalleryActivity extends AppCompatActivity {
         Button sort = findViewById(R.id.sort);
         DBConnector = new DBShop(this);
         id = getIntent().getLongExtra(getString(R.string.account), -1);
+        sortCode = 0;
 
         back.setOnClickListener(v -> finish());
         sort.setOnClickListener(v -> {
@@ -52,29 +54,6 @@ public class GalleryActivity extends AppCompatActivity {
 
     private Product[] getProducts() {
         ArrayList<Product> productArr = DBConnector.selectAllProducts();
-        Product[] arr = new Product[productArr.size()];
-
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = productArr.get(i);
-        }
-
-        return arr;
-
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1){
-            if (resultCode == RESULT_OK) {
-                int sortCode = data.getIntExtra(getString(R.string.category), 0);
-                sort(sortCode);
-            }
-        }
-    }
-
-    private void sort(int sortCode) {
-        ArrayList<Product> productArr = DBConnector.selectAllProducts();
         ArrayList<Product> sortedArr = new ArrayList<>();
         for (int i = 0; i < productArr.size(); i++) {
             if (sortCode == 0 || (sortCode == 1 && productArr.get(i).getCategory().equals(getString(R.string.console))) || (sortCode == 2 && productArr.get(i).getCategory().equals(getString(R.string.accessory))) || (sortCode == 3 && productArr.get(i).getCategory().equals(getString(R.string.game)))) {
@@ -86,8 +65,17 @@ public class GalleryActivity extends AppCompatActivity {
         for (int i = 0; i < arr.length; i++) {
             arr[i] = sortedArr.get(i);
         }
-        GalleryAdapter adapter = new GalleryAdapter(this, arr, id);
-        list.setAdapter(adapter);
+        return arr;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1){
+            if (resultCode == RESULT_OK) {
+                sortCode = data.getIntExtra(getString(R.string.category), 0);
+            }
+        }
     }
 
 }
