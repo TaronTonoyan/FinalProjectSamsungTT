@@ -66,6 +66,7 @@ public class CartAdapter extends ArrayAdapter<Order> {
 
         quantity.setOnClickListener(v -> {
             order.setQuantity(Integer.parseInt(quantity.getText().toString()));
+            quantity.setText(order.getQuantity() + "");
         });
 
         save.setOnClickListener(v -> {

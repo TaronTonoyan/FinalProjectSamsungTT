@@ -3,7 +3,6 @@ package com.samsung.finalprojectsamsungtt.activities;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.samsung.finalprojectsamsungtt.DBShop;
 import com.samsung.finalprojectsamsungtt.R;
 import com.samsung.finalprojectsamsungtt.models.Order;
+
+import java.util.ArrayList;
 
 public class SureActivity extends AppCompatActivity {
 
@@ -44,6 +45,12 @@ public class SureActivity extends AppCompatActivity {
                     DBConnector.deleteAcc(id);
                     break;
                 case 1:
+                    ArrayList<Order> arr = DBConnector.selectAllOrders();
+                    for (int i = 0; i < arr.size(); i++) {
+                        if (arr.get(i).getProduct() == id) {
+                            DBConnector.deleteProduct(arr.get(i).getProduct());
+                        }
+                    }
                     DBConnector.deleteProduct(id);
                     break;
                 case 2:

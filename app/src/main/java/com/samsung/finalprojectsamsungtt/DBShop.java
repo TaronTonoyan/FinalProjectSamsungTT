@@ -19,6 +19,7 @@ public class DBShop {
     private static final String TABLE_ACCOUNTS = "tableLogin";
     private static final String TABLE_PRODUCTS = "tableProduct";
     private static final String TABLE_ORDERS = "tableOrder";
+    private static final String TABLE_HISTORY = "tableHistory";
 
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_EMAIL = "Email";
@@ -83,6 +84,13 @@ public class DBShop {
         cv.put(COLUMN_IS_WISHLIST, isWishlist);
         cv.put(COLUMN_QUANTITY, quantity);
         return db.insert(TABLE_ORDERS, null, cv);
+    }
+
+    public long insertHistory(String address, float price) {
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_ADDRESS, address);
+        cv.put(COLUMN_PRICE, price);
+        return db.insert(TABLE_HISTORY, null, cv);
     }
 
     public int updateAcc(Account ld) {
@@ -255,9 +263,14 @@ public class DBShop {
                     COLUMN_PRODUCT + " INTEGER, " +
                     COLUMN_IS_WISHLIST + " INTEGER, " +
                     COLUMN_QUANTITY + " INTEGER);";
+            String queryHistory = "CREATE TABLE " + TABLE_HISTORY + " (" +
+                    COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COLUMN_ADDRESS + " TEXT, " +
+                    COLUMN_PRICE + " REAL);";
             db.execSQL(queryAcc);
             db.execSQL(queryProduct);
             db.execSQL(queryOrder);
+            db.execSQL(queryHistory);
         }
 
         @Override
@@ -265,6 +278,7 @@ public class DBShop {
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_ACCOUNTS);
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTS);
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDERS);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_HISTORY);
             onCreate(db);
         }
     }

@@ -69,4 +69,5 @@
     <string name="no">No</string>
     <string name="quantity">Quantity</string>
     <string name="checkout">CheckOut</string>
+    <string name="total_price">Total Price</string>
 </resources>

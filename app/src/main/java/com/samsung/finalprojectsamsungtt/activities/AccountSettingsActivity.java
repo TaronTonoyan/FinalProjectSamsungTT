@@ -46,7 +46,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
 
         back.setOnClickListener(v -> finish());
         save.setOnClickListener(v -> {
-            if (password.getText().toString().equals(confirmPassword.getText().toString()) && !password.getText().equals("")) {
+            if (password.getText().toString().equals(confirmPassword.getText().toString()) && !password.getText().toString().equals("")) {
                 acc.setPassword(password.getText().toString());
                 acc.setAddress(address.getText().toString());
                 DBConnector.updateAcc(acc);

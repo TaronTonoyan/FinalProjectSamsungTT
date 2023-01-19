@@ -45,6 +45,7 @@ public class CartActivity extends AppCompatActivity {
             if (getTotalPrice() > 0) {
                 Intent intent = new Intent(CartActivity.this, ConfirmActivity.class);
                 intent.putExtra(getString(R.string.account), id);
+                intent.putExtra(getString(R.string.total_price), getTotalPrice());
                 startActivityForResult(intent, 1);
             } else {
                 Toast.makeText(getApplicationContext(), getString(R.string.cart_empty), Toast.LENGTH_SHORT).show();

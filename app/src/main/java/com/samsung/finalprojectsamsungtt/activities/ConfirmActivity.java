@@ -1,10 +1,10 @@
 package com.samsung.finalprojectsamsungtt.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +19,8 @@ import java.util.ArrayList;
 public class ConfirmActivity extends AppCompatActivity {
 
     private DBShop DBConnector;
+    private EditText address;
+    private float total;
     private long id;
 
     @Override
@@ -30,11 +32,12 @@ public class ConfirmActivity extends AppCompatActivity {
 
     private void initViews() {
         ImageView back = findViewById(R.id.backConfirm);
-        EditText address = findViewById(R.id.confirmAddress);
+        address = findViewById(R.id.confirmAddress);
         Button confirm = findViewById(R.id.confirm);
         DBConnector = new DBShop(this);
         id = getIntent().getLongExtra(getString(R.string.account), -1);
         Account acc = DBConnector.selectAcc(id);
+        total = getIntent().getFloatExtra(getString(R.string.total_price), 0);
         if (acc.getAddress() == null) {
             address.setHint(getString(R.string.no_address));
         } else {
@@ -43,9 +46,14 @@ public class ConfirmActivity extends AppCompatActivity {
 
         back.setOnClickListener(v -> finish());
         confirm.setOnClickListener(v -> {
-            deleteCartOrders();
-            setResult(RESULT_OK);
-            finish();
+            if (address.getText().toString().equals("")) {
+                Toast.makeText(getApplicationContext(), "Please write an address for us", Toast.LENGTH_SHORT).show();
+            } else {
+                DBConnector.insertHistory(address.getText().toString(), total);
+                deleteCartOrders();
+                setResult(RESULT_OK);
+                finish();
+            }
         });
     }
 

@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Button accountSettings = findViewById(R.id.accountSettings);
         Button logOut = findViewById(R.id.logOut);
         DBConnector = new DBShop(this);
+        DBConnector.deleteOrder(66);
 
         gallery.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, GalleryActivity.class);
