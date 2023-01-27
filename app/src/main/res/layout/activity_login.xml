@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/loginTitle"
@@ -12,56 +11,81 @@
         android:layout_height="0dp"
         android:text="@string/login_text"
         android:textSize="34sp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/loginGuideline2"
         app:layout_constraintEnd_toStartOf="@+id/verticalLoginGuideline2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="@+id/verticalLoginGuideline1"
         app:layout_constraintTop_toTopOf="@+id/loginGuideline1" />
 
-    <EditText
-        android:id="@+id/loginEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutEmail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:hint="@string/email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/loginGuideline3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginGuideline2" />
-
-    <EditText
-        android:id="@+id/loginPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/loginGuideline4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/loginGuideline3" />
+        app:layout_constraintEnd_toStartOf="@+id/verticalLoginGuideline2"
+        app:layout_constraintStart_toStartOf="@+id/verticalLoginGuideline1"
+        app:layout_constraintTop_toTopOf="@+id/loginGuideline3">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutPassword"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:hint="@string/password"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/loginGuideline5"
+        app:layout_constraintEnd_toStartOf="@+id/verticalLoginGuideline2"
+        app:layout_constraintStart_toStartOf="@+id/verticalLoginGuideline1"
+        app:layout_constraintTop_toTopOf="@+id/loginGuideline4">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:inputType="textPassword"
+            android:textColor="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/login"
-        app:layout_constraintBottom_toTopOf="@+id/loginGuideline5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/loginGuideline4" />
+        android:background="@drawable/custom_button"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/loginGuideline6"
+        app:layout_constraintEnd_toStartOf="@+id/verticalLoginGuideline2"
+        app:layout_constraintStart_toStartOf="@+id/verticalLoginGuideline1"
+        app:layout_constraintTop_toTopOf="@+id/loginGuideline5" />
 
     <Button
         android:id="@+id/loginButtonRegister"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/register"
-        app:layout_constraintBottom_toTopOf="@+id/loginGuideline6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/loginGuideline5" />
+        android:background="@drawable/custom_button"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/loginGuideline7"
+        app:layout_constraintEnd_toStartOf="@+id/verticalLoginGuideline2"
+        app:layout_constraintStart_toStartOf="@+id/verticalLoginGuideline1"
+        app:layout_constraintTop_toTopOf="@+id/loginGuideline6" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/loginGuideline1"
@@ -104,6 +128,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.65" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/loginGuideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/verticalLoginGuideline1"

@@ -3,11 +3,14 @@ package com.samsung.finalprojectsamsungtt.activities;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.samsung.finalprojectsamsungtt.DBShop;
@@ -41,7 +44,8 @@ public class ProductActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        ImageView back = findViewById(R.id.backProduct);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         ImageView image = findViewById(R.id.image);
         TextView name = findViewById(R.id.name);
         TextView price = findViewById(R.id.price);
@@ -81,7 +85,6 @@ public class ProductActivity extends AppCompatActivity {
             wishlist.setText(getString(R.string.add_to_wishlist));
         }
 
-        back.setOnClickListener(v -> finish());
         cart.setOnClickListener(v -> {
             if (existsInCart()) {
                 cart.setText(getString(R.string.add_to_cart));
@@ -133,6 +136,16 @@ public class ProductActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

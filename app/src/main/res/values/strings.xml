@@ -37,8 +37,8 @@
     <string name="product_description">Description of the Product</string>
     <string name="product_image">Insert the URL of your Image</string>
     <string name="product_added">Your Product was added Successfully</string>
-    <string name="login_text">Welcome, please login to your account</string>
-    <string name="register_text">User Registration</string>
+    <string name="login_text">LOGIN TO YOUR ACCOUNT</string>
+    <string name="register_text">REGISTER</string>
     <string name="add_console">Add a Gaming Console</string>
     <string name="add_accessory">Add an Accessory</string>
     <string name="add_game">Add a VideoGame</string>
@@ -70,4 +70,5 @@
     <string name="quantity">Quantity</string>
     <string name="checkout">CheckOut</string>
     <string name="total_price">Total Price</string>
+    <string name="address">Address</string>
 </resources>

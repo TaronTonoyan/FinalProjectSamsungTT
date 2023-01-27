@@ -2,12 +2,15 @@ package com.samsung.finalprojectsamsungtt.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.samsung.finalprojectsamsungtt.DBShop;
@@ -31,11 +34,12 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         email = findViewById(R.id.registerEmailAddress);
         password = findViewById(R.id.registerPassword);
         confirmPassword = findViewById(R.id.confirmNewPassword);
         Button register = findViewById(R.id.registerButton);
-        ImageView goBack = findViewById(R.id.returnToLoginPage);
         DBConnector = new DBShop(this);
 
         register.setOnClickListener(v -> {
@@ -48,7 +52,6 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), getString(R.string.fill_form), Toast.LENGTH_SHORT).show();
             }
         });
-        goBack.setOnClickListener(v -> finish());
     }
 
     private void register(String email, String password) {
@@ -69,6 +72,16 @@ public class RegisterActivity extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(), getString(R.string.email_exists), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

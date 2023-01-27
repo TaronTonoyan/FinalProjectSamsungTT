@@ -1,99 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/accountText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:text="@string/register_text"
         android:textAlignment="center"
-        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/accountGuideline1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/backAccount"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/accountGuideline2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/accountGuideline1"
-        app:srcCompat="@drawable/left_arrow" />
-
     <TextView
         android:id="@+id/accountEmailAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/register_text"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:textSize="24sp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/accountGuideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/accountGuideline2" />
 
-    <EditText
-        android:id="@+id/accountPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/new_password"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/accountGuideline4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/accountGuideline3" />
-
-    <EditText
-        android:id="@+id/accountNewPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/confirm_password"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/accountGuideline5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/accountGuideline4" />
-
-    <EditText
-        android:id="@+id/accountAddress"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutPassword"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:ems="10"
-        android:hint="@string/no_address"
-        android:inputType="text"
+        android:hint="@string/new_password"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/accountGuideline4"
+        app:layout_constraintEnd_toStartOf="@+id/verticalAccountGuideline2"
+        app:layout_constraintStart_toStartOf="@+id/verticalAccountGuideline1"
+        app:layout_constraintTop_toTopOf="@+id/accountGuideline3">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/accountPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:inputType="textPassword"
+            android:textColor="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutConfirmPassword"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:hint="@string/confirm_password"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/accountGuideline5"
+        app:layout_constraintEnd_toStartOf="@+id/verticalAccountGuideline2"
+        app:layout_constraintStart_toStartOf="@+id/verticalAccountGuideline1"
+        app:layout_constraintTop_toTopOf="@+id/accountGuideline4">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/accountNewPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:inputType="textPassword"
+            android:textColor="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutAddress"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:hint="@string/address"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/accountGuideline6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/accountGuideline5" />
+        app:layout_constraintEnd_toStartOf="@+id/verticalAccountGuideline2"
+        app:layout_constraintStart_toStartOf="@+id/verticalAccountGuideline1"
+        app:layout_constraintTop_toTopOf="@+id/accountGuideline5">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/accountAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:inputType="text"
+            android:textColor="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/accountSave"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
         android:text="@string/save"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/accountGuideline7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/verticalAccountGuideline2"
+        app:layout_constraintStart_toStartOf="@+id/verticalAccountGuideline1"
         app:layout_constraintTop_toTopOf="@+id/accountGuideline6" />
 
     <Button
         android:id="@+id/accountDelete"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
         android:text="@string/delete"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/verticalAccountGuideline2"
+        app:layout_constraintStart_toStartOf="@+id/verticalAccountGuideline1"
         app:layout_constraintTop_toTopOf="@+id/accountGuideline7" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -144,5 +169,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verticalAccountGuideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verticalAccountGuideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

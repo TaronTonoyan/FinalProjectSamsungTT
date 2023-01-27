@@ -2,10 +2,13 @@ package com.samsung.finalprojectsamsungtt.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.samsung.finalprojectsamsungtt.R;
@@ -20,7 +23,8 @@ public class ProductCategoryActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        ImageView back = findViewById(R.id.backProductCategory);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         Button addConsole = findViewById(R.id.addConsole);
         Button addAccessory = findViewById(R.id.addAccessory);
         Button addGame = findViewById(R.id.addGame);
@@ -28,7 +32,6 @@ public class ProductCategoryActivity extends AppCompatActivity {
         boolean isSort = getIntent().getBooleanExtra(getString(R.string.sort), false);
         boolean isUpdate = getIntent().getBooleanExtra(getString(R.string.category), false);
 
-        back.setOnClickListener(v -> finish());
         if (isSort) {
             allCategories.setVisibility(View.VISIBLE);
             addConsole.setText(getString(R.string.console));
@@ -111,6 +114,16 @@ public class ProductCategoryActivity extends AppCompatActivity {
                 finish();
             }
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

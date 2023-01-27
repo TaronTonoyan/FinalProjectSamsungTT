@@ -2,13 +2,16 @@ package com.samsung.finalprojectsamsungtt.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.samsung.finalprojectsamsungtt.DBShop;
@@ -30,7 +33,8 @@ public class AccountSettingsActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        ImageView back = findViewById(R.id.backAccount);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         TextView email = findViewById(R.id.accountEmailAddress);
         password = findViewById(R.id.accountPassword);
         confirmPassword = findViewById(R.id.accountNewPassword);
@@ -43,11 +47,19 @@ public class AccountSettingsActivity extends AppCompatActivity {
 
         email.setText(acc.getEmail());
         address.setText(acc.getAddress());
+        if (address.getText().toString().equals("")) {
+            address.setHint(getString(R.string.no_address));
+        } else {
+            address.setHint(getString(R.string.address));
+        }
 
-        back.setOnClickListener(v -> finish());
         save.setOnClickListener(v -> {
             if (password.getText().toString().equals(confirmPassword.getText().toString()) && !password.getText().toString().equals("")) {
                 acc.setPassword(password.getText().toString());
+                acc.setAddress(address.getText().toString());
+                DBConnector.updateAcc(acc);
+                finish();
+            } else if (password.getText().toString().equals(confirmPassword.getText().toString()) && password.getText().toString().equals("")) {
                 acc.setAddress(address.getText().toString());
                 DBConnector.updateAcc(acc);
                 finish();
@@ -70,6 +82,16 @@ public class AccountSettingsActivity extends AppCompatActivity {
                 finish();
             }
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

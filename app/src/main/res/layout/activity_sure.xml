@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,8 +10,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/are_you_sure"
-        android:textAlignment="center"
         android:textSize="34sp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/sureGuideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,9 +21,12 @@
 
     <Button
         android:id="@+id/buttonYes"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/yes"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/sureGuideline4"
         app:layout_constraintEnd_toStartOf="@+id/sureGuideline5"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,12 +34,15 @@
 
     <Button
         android:id="@+id/buttonNo"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/no"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/sureGuideline4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/sureGuideline5"
+        app:layout_constraintStart_toStartOf="@+id/sureGuideline6"
         app:layout_constraintTop_toTopOf="@+id/sureGuideline3" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -70,7 +78,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.45" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/sureGuideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.55" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

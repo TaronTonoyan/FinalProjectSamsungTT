@@ -1,10 +1,13 @@
 package com.samsung.finalprojectsamsungtt.activities;
 
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -28,13 +31,12 @@ public class AddAdminsActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         ListView list = findViewById(R.id.accountListView);
-        ImageView back = findViewById(R.id.backAddAdmins);
         DBConnector = new DBShop(this);
         AccountAdapter adapter = new AccountAdapter(this, getAccounts());
         list.setAdapter(adapter);
-
-        back.setOnClickListener(v -> finish());
     }
 
     private Account[] getAccounts() {
@@ -48,5 +50,15 @@ public class AddAdminsActivity extends AppCompatActivity {
         return arr;
 
     }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
 }

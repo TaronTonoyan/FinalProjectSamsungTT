@@ -1,9 +1,12 @@
 package com.samsung.finalprojectsamsungtt.activities;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.samsung.finalprojectsamsungtt.DBShop;
@@ -28,14 +31,14 @@ public class WishlistActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        ImageView back = findViewById(R.id.backWishlist);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         list = findViewById(R.id.wishlistListView);
         id = getIntent().getLongExtra(getString(R.string.wishlist), -1);
         DBConnector = new DBShop(this);
         WishlistAdapter adapter = new WishlistAdapter(this, getWishlistOrders());
         list.setAdapter(adapter);
 
-        back.setOnClickListener(v -> finish());
     }
 
     @Override
@@ -60,5 +63,17 @@ public class WishlistActivity extends AppCompatActivity {
 
         return arr;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
 }

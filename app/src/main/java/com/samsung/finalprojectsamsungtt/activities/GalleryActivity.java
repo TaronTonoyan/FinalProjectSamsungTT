@@ -2,10 +2,13 @@ package com.samsung.finalprojectsamsungtt.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.samsung.finalprojectsamsungtt.DBShop;
@@ -30,14 +33,14 @@ public class GalleryActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         list = findViewById(R.id.galleryListView);
-        ImageView back = findViewById(R.id.backGallery);
         Button sort = findViewById(R.id.sort);
         DBConnector = new DBShop(this);
         id = getIntent().getLongExtra(getString(R.string.account), -1);
         sortCode = 0;
 
-        back.setOnClickListener(v -> finish());
         sort.setOnClickListener(v -> {
             Intent intent = new Intent(GalleryActivity.this, ProductCategoryActivity.class);
             intent.putExtra(getString(R.string.sort), true);
@@ -76,6 +79,16 @@ public class GalleryActivity extends AppCompatActivity {
                 sortCode = data.getIntExtra(getString(R.string.category), 0);
             }
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

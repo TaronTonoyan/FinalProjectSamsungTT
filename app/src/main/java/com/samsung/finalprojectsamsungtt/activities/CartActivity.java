@@ -2,12 +2,15 @@ package com.samsung.finalprojectsamsungtt.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.samsung.finalprojectsamsungtt.DBShop;
@@ -33,14 +36,14 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        ImageView back = findViewById(R.id.backCart);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         totalPrice = findViewById(R.id.priceTotal);
         list = findViewById(R.id.cartListView);
         Button order = findViewById(R.id.order);
         DBConnector = new DBShop(this);
         id = getIntent().getLongExtra(getString(R.string.cart), -1);
 
-        back.setOnClickListener(v -> finish());
         order.setOnClickListener(v -> {
             if (getTotalPrice() > 0) {
                 Intent intent = new Intent(CartActivity.this, ConfirmActivity.class);
@@ -95,6 +98,16 @@ public class CartActivity extends AppCompatActivity {
                 finish();
             }
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

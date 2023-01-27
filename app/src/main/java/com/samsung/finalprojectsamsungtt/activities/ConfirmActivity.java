@@ -1,12 +1,15 @@
 package com.samsung.finalprojectsamsungtt.activities;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.samsung.finalprojectsamsungtt.DBShop;
@@ -31,7 +34,8 @@ public class ConfirmActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        ImageView back = findViewById(R.id.backConfirm);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         address = findViewById(R.id.confirmAddress);
         Button confirm = findViewById(R.id.confirm);
         DBConnector = new DBShop(this);
@@ -41,10 +45,10 @@ public class ConfirmActivity extends AppCompatActivity {
         if (acc.getAddress() == null) {
             address.setHint(getString(R.string.no_address));
         } else {
+            address.setHint(getString(R.string.address));
             address.setText(acc.getAddress());
         }
 
-        back.setOnClickListener(v -> finish());
         confirm.setOnClickListener(v -> {
             if (address.getText().toString().equals("")) {
                 Toast.makeText(getApplicationContext(), "Please write an address for us", Toast.LENGTH_SHORT).show();
@@ -64,6 +68,16 @@ public class ConfirmActivity extends AppCompatActivity {
                 DBConnector.deleteOrder(arr.get(i).getId());
             }
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

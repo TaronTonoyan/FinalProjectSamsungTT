@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,70 +12,93 @@
         android:layout_height="0dp"
         android:text="@string/add_products"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/addProductGuideline1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/backAddProduct"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/addProductGuideline2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/addProductGuideline1"
-        app:srcCompat="@drawable/left_arrow" />
+        app:layout_constraintTop_toTopOf="@+id/addProductGuideline1" />
 
-    <EditText
-        android:id="@+id/productName"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:ems="10"
         android:hint="@string/product_name"
-        android:inputType="textPersonName"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/addProductGuideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/addProductGuideline2" />
+        app:layout_constraintTop_toTopOf="@+id/addProductGuideline2">
 
-    <EditText
-        android:id="@+id/productPrice"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/productName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:inputType="textPersonName"
+            android:textColor="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:ems="10"
         android:hint="@string/product_price"
-        android:inputType="numberDecimal"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/addProductGuideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/addProductGuideline3" />
+        app:layout_constraintTop_toTopOf="@+id/addProductGuideline3">
 
-    <EditText
-        android:id="@+id/productDescription"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/productPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:inputType="numberDecimal"
+            android:textColor="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:ems="10"
         android:hint="@string/product_description"
-        android:inputType="textPersonName"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/addProductGuideline5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/addProductGuideline4" />
+        app:layout_constraintTop_toTopOf="@+id/addProductGuideline4">
 
-    <EditText
-        android:id="@+id/imageLink"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/productDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:inputType="text"
+            android:textColor="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:ems="10"
         android:hint="@string/product_image"
-        android:inputType="textPersonName"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/addProductGuideline6"
         app:layout_constraintEnd_toEndOf="@+id/addAdminsGuidelineVertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/addProductGuideline5" />
+        app:layout_constraintTop_toTopOf="@+id/addProductGuideline5">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/imageLink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:inputType="text"
+            android:textColor="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/viewImage"
