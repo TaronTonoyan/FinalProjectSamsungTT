@@ -26,7 +26,7 @@ public class AdminActivity extends AppCompatActivity {
         Button addProduct = findViewById(R.id.addProduct);
         Button updateProduct = findViewById(R.id.updateProduct);
         Button deleteProduct = findViewById(R.id.deleteProduct);
-        Button logOut = findViewById(R.id.logOutFromAdmin);
+        Button logOut = findViewById(R.id.logout);
         isRoot = getIntent().getBooleanExtra(getString(R.string.is_root), false);
 
         Toast.makeText(getApplicationContext(), getString(R.string.admin_login), Toast.LENGTH_SHORT).show();

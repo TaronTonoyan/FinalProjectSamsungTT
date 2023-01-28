@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,23 +33,18 @@ public class AccountSettingsActivity extends AppCompatActivity {
     private void initViews() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        TextView email = findViewById(R.id.accountEmailAddress);
-        password = findViewById(R.id.accountPassword);
-        confirmPassword = findViewById(R.id.accountNewPassword);
-        address = findViewById(R.id.accountAddress);
-        Button save = findViewById(R.id.accountSave);
-        Button delete = findViewById(R.id.accountDelete);
+        TextView email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+        confirmPassword = findViewById(R.id.confirmPassword);
+        address = findViewById(R.id.address);
+        Button save = findViewById(R.id.save);
+        Button delete = findViewById(R.id.delete);
         DBConnector = new DBShop(this);
         long id = getIntent().getLongExtra(getString(R.string.account), -1);
         Account acc = DBConnector.selectAcc(id);
 
         email.setText(acc.getEmail());
         address.setText(acc.getAddress());
-        if (address.getText().toString().equals("")) {
-            address.setHint(getString(R.string.no_address));
-        } else {
-            address.setHint(getString(R.string.address));
-        }
 
         save.setOnClickListener(v -> {
             if (password.getText().toString().equals(confirmPassword.getText().toString()) && !password.getText().toString().equals("")) {

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -35,7 +34,7 @@ public class GalleryActivity extends AppCompatActivity {
     private void initViews() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        list = findViewById(R.id.galleryListView);
+        list = findViewById(R.id.listView);
         Button sort = findViewById(R.id.sort);
         DBConnector = new DBShop(this);
         id = getIntent().getLongExtra(getString(R.string.account), -1);
@@ -59,8 +58,25 @@ public class GalleryActivity extends AppCompatActivity {
         ArrayList<Product> productArr = DBConnector.selectAllProducts();
         ArrayList<Product> sortedArr = new ArrayList<>();
         for (int i = 0; i < productArr.size(); i++) {
-            if (sortCode == 0 || (sortCode == 1 && productArr.get(i).getCategory().equals(getString(R.string.console))) || (sortCode == 2 && productArr.get(i).getCategory().equals(getString(R.string.accessory))) || (sortCode == 3 && productArr.get(i).getCategory().equals(getString(R.string.game)))) {
-                sortedArr.add(productArr.get(i));
+            switch (sortCode) {
+                case 0:
+                    sortedArr.add(productArr.get(i));
+                    break;
+                case 1:
+                    if (productArr.get(i).getCategory().equals(getString(R.string.console))) {
+                        sortedArr.add(productArr.get(i));
+                    }
+                    break;
+                case 2:
+                    if (productArr.get(i).getCategory().equals(getString(R.string.accessory))) {
+                        sortedArr.add(productArr.get(i));
+                    }
+                    break;
+                case 3:
+                    if (productArr.get(i).getCategory().equals(getString(R.string.game))) {
+                        sortedArr.add(productArr.get(i));
+                    }
+                    break;
             }
         }
         Product[] arr = new Product[sortedArr.size()];

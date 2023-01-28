@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.samsung.finalprojectsamsungtt.DBShop;
@@ -33,7 +32,7 @@ public class AddAdminsActivity extends AppCompatActivity {
     private void initViews() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        ListView list = findViewById(R.id.accountListView);
+        ListView list = findViewById(R.id.listView);
         DBConnector = new DBShop(this);
         AccountAdapter adapter = new AccountAdapter(this, getAccounts());
         list.setAdapter(adapter);

@@ -46,10 +46,10 @@ public class GalleryAdapter extends ArrayAdapter<Product> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.gallery_item, null);
         }
 
-        ImageView image = convertView.findViewById(R.id.galleryImage);
-        ((TextView) convertView.findViewById(R.id.galleryName)).setText(product.getName());
-        ((TextView) convertView.findViewById(R.id.galleryPrice)).setText(product.getPrice() + "$");
-        Button view = convertView.findViewById(R.id.viewGalleryItem);
+        ImageView image = convertView.findViewById(R.id.image);
+        ((TextView) convertView.findViewById(R.id.name)).setText(product.getName());
+        ((TextView) convertView.findViewById(R.id.price)).setText(product.getPrice() + "$");
+        Button view = convertView.findViewById(R.id.view);
 
         if (id == -1) {
             view.setText(getContext().getString(R.string.edit));

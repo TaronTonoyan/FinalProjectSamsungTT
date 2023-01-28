@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,7 +18,7 @@ import com.samsung.finalprojectsamsungtt.models.Order;
 
 import java.util.ArrayList;
 
-public class ConfirmActivity extends AppCompatActivity {
+public class CheckoutActivity extends AppCompatActivity {
 
     private DBShop DBConnector;
     private EditText address;
@@ -29,7 +28,7 @@ public class ConfirmActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_confirm);
+        setContentView(R.layout.activity_checkout);
         initViews();
     }
 
@@ -37,7 +36,7 @@ public class ConfirmActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         address = findViewById(R.id.confirmAddress);
-        Button confirm = findViewById(R.id.confirm);
+        Button confirm = findViewById(R.id.checkout);
         DBConnector = new DBShop(this);
         id = getIntent().getLongExtra(getString(R.string.account), -1);
         Account acc = DBConnector.selectAcc(id);

@@ -31,8 +31,8 @@ public class AccountAdapter extends ArrayAdapter<Account> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.account_item, null);
         }
 
-        ((TextView) convertView.findViewById(R.id.accountListItem)).setText(acc.getEmail());
-        CheckBox isAdmin = convertView.findViewById(R.id.accountCheckBox);
+        ((TextView) convertView.findViewById(R.id.listItem)).setText(acc.getEmail());
+        CheckBox isAdmin = convertView.findViewById(R.id.checkBox);
 
         isAdmin.setChecked(acc.getIsAdmin() == 1);
         isAdmin.setOnClickListener(v -> {

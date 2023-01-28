@@ -45,11 +45,11 @@ public class WishlistAdapter extends ArrayAdapter<Order> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.wishlist_item, null);
         }
 
-        ImageView image = convertView.findViewById(R.id.wishlistImage);
-        ((TextView) convertView.findViewById(R.id.wishlistName)).setText(product.getName());
-        ((TextView) convertView.findViewById(R.id.wishlistPrice)).setText(product.getPrice() + "$");
+        ImageView image = convertView.findViewById(R.id.image);
+        ((TextView) convertView.findViewById(R.id.name)).setText(product.getName());
+        ((TextView) convertView.findViewById(R.id.price)).setText(product.getPrice() + "$");
         Button removeFromWishlist = convertView.findViewById(R.id.removeWishlistItem);
-        Button addToCart = convertView.findViewById(R.id.addToCartWishlist);
+        Button addToCart = convertView.findViewById(R.id.addToCart);
 
         try {
             url = new URL(product.getImage());

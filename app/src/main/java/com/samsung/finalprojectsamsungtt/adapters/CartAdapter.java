@@ -12,11 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.common.internal.Objects;
 import com.samsung.finalprojectsamsungtt.DBShop;
 import com.samsung.finalprojectsamsungtt.R;
 import com.samsung.finalprojectsamsungtt.activities.SureActivity;
@@ -46,12 +44,12 @@ public class CartAdapter extends ArrayAdapter<Order> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.cart_item, null);
         }
 
-        ImageView image = convertView.findViewById(R.id.cartImage);
-        ((TextView) convertView.findViewById(R.id.cartName)).setText(product.getName());
-        ((TextView) convertView.findViewById(R.id.cartPrice)).setText(product.getPrice() + "$");
-        EditText quantity = convertView.findViewById(R.id.cartQuantity);
+        ImageView image = convertView.findViewById(R.id.image);
+        ((TextView) convertView.findViewById(R.id.name)).setText(product.getName());
+        ((TextView) convertView.findViewById(R.id.price)).setText(product.getPrice() + "$");
+        EditText quantity = convertView.findViewById(R.id.quantity);
         Button removeFromCart = convertView.findViewById(R.id.removeCartItem);
-        Button save = convertView.findViewById(R.id.saveCartItem);
+        Button save = convertView.findViewById(R.id.save);
         quantity.setText(order.getQuantity() + "");
 
         try {

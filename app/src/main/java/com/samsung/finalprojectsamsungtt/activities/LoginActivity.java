@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.samsung.finalprojectsamsungtt.DBShop;
 import com.samsung.finalprojectsamsungtt.R;
 import com.samsung.finalprojectsamsungtt.models.Account;
@@ -31,10 +30,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        email = findViewById(R.id.loginEmail);
-        password = findViewById(R.id.loginPassword);
-        Button login = findViewById(R.id.loginButton);
-        Button register = findViewById(R.id.loginButtonRegister);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+        Button login = findViewById(R.id.login);
+        Button register = findViewById(R.id.register);
         DBConnector = new DBShop(this);
 
         login.setOnClickListener(view -> login(email.getText().toString(), password.getText().toString()));

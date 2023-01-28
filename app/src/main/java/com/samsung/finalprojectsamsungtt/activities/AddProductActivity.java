@@ -48,14 +48,14 @@ public class AddProductActivity extends AppCompatActivity {
     private void initViews() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        name = findViewById(R.id.productName);
-        price = findViewById(R.id.productPrice);
-        description = findViewById(R.id.productDescription);
-        imageLink = findViewById(R.id.imageLink);
-        image = findViewById(R.id.addProductImage);
-        Button view = findViewById(R.id.viewImage);
-        Button save = findViewById(R.id.saveProduct);
-        addCategory = findViewById(R.id.addCategory);
+        name = findViewById(R.id.name);
+        price = findViewById(R.id.price);
+        description = findViewById(R.id.description);
+        imageLink = findViewById(R.id.imageUrl);
+        image = findViewById(R.id.image);
+        Button view = findViewById(R.id.view);
+        Button save = findViewById(R.id.save);
+        addCategory = findViewById(R.id.category);
         DBConnector = new DBShop(this);
         category = getIntent().getStringExtra(getString(R.string.category));
         addCategory.setText(category);

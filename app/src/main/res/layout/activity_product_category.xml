@@ -6,18 +6,20 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/productCategoryText"
+        android:id="@+id/text"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/add_products_category"
         android:textAlignment="center"
-        android:textSize="34sp"
         android:textColor="@color/white"
+        android:textSize="34sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/productCategoryGuideline2"
-        app:layout_constraintEnd_toStartOf="@+id/verticalProductCategoryGuideline2"
-        app:layout_constraintStart_toStartOf="@+id/verticalProductCategoryGuideline1"
-        app:layout_constraintTop_toTopOf="@+id/productCategoryGuideline1" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/verticalGuideline2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/verticalGuideline1"
+        app:layout_constraintTop_toTopOf="@+id/guideline1"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/addConsole"
@@ -27,10 +29,10 @@
         android:text="@string/add_console"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/productCategoryGuideline4"
-        app:layout_constraintEnd_toStartOf="@+id/verticalProductCategoryGuideline2"
-        app:layout_constraintStart_toStartOf="@+id/verticalProductCategoryGuideline1"
-        app:layout_constraintTop_toTopOf="@+id/productCategoryGuideline3" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toStartOf="@+id/verticalGuideline2"
+        app:layout_constraintStart_toStartOf="@+id/verticalGuideline1"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <Button
         android:id="@+id/addAccessory"
@@ -40,10 +42,10 @@
         android:text="@string/add_accessory"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/productCategoryGuideline5"
-        app:layout_constraintEnd_toStartOf="@+id/verticalProductCategoryGuideline2"
-        app:layout_constraintStart_toStartOf="@+id/verticalProductCategoryGuideline1"
-        app:layout_constraintTop_toTopOf="@+id/productCategoryGuideline4" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintEnd_toStartOf="@+id/verticalGuideline2"
+        app:layout_constraintStart_toStartOf="@+id/verticalGuideline1"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
     <Button
         android:id="@+id/addGame"
@@ -53,10 +55,10 @@
         android:text="@string/add_game"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/productCategoryGuideline6"
-        app:layout_constraintEnd_toStartOf="@+id/verticalProductCategoryGuideline2"
-        app:layout_constraintStart_toStartOf="@+id/verticalProductCategoryGuideline1"
-        app:layout_constraintTop_toTopOf="@+id/productCategoryGuideline5" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintEnd_toStartOf="@+id/verticalGuideline2"
+        app:layout_constraintStart_toStartOf="@+id/verticalGuideline1"
+        app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
     <Button
         android:id="@+id/allCategories"
@@ -66,69 +68,69 @@
         android:text="@string/all"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/productCategoryGuideline7"
-        app:layout_constraintEnd_toStartOf="@+id/verticalProductCategoryGuideline2"
-        app:layout_constraintStart_toStartOf="@+id/verticalProductCategoryGuideline1"
-        app:layout_constraintTop_toTopOf="@+id/productCategoryGuideline6" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline7"
+        app:layout_constraintEnd_toStartOf="@+id/verticalGuideline2"
+        app:layout_constraintStart_toStartOf="@+id/verticalGuideline1"
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/productCategoryGuideline1"
+        android:id="@+id/guideline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/productCategoryGuideline2"
+        android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.3" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/productCategoryGuideline3"
+        android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.4" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/productCategoryGuideline4"
+        android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/productCategoryGuideline5"
+        android:id="@+id/guideline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.6" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/productCategoryGuideline6"
+        android:id="@+id/guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.7" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/productCategoryGuideline7"
+        android:id="@+id/guideline7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.8" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/verticalProductCategoryGuideline1"
+        android:id="@+id/verticalGuideline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.05" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/verticalProductCategoryGuideline2"
+        android:id="@+id/verticalGuideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"

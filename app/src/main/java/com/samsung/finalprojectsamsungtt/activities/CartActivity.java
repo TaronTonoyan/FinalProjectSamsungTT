@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,8 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.samsung.finalprojectsamsungtt.DBShop;
 import com.samsung.finalprojectsamsungtt.R;
 import com.samsung.finalprojectsamsungtt.adapters.CartAdapter;
-import com.samsung.finalprojectsamsungtt.adapters.GalleryAdapter;
 import com.samsung.finalprojectsamsungtt.models.Order;
+import com.samsung.finalprojectsamsungtt.models.Product;
 
 import java.util.ArrayList;
 
@@ -26,7 +25,8 @@ public class CartActivity extends AppCompatActivity {
     private DBShop DBConnector;
     private long id;
     private ListView list;
-    public static TextView totalPrice;
+    private int sortCode;
+    private TextView totalPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +39,16 @@ public class CartActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         totalPrice = findViewById(R.id.priceTotal);
-        list = findViewById(R.id.cartListView);
+        list = findViewById(R.id.listView);
+        Button sort = findViewById(R.id.sort);
         Button order = findViewById(R.id.order);
         DBConnector = new DBShop(this);
         id = getIntent().getLongExtra(getString(R.string.cart), -1);
+        sortCode = 0;
 
         order.setOnClickListener(v -> {
             if (getTotalPrice() > 0) {
-                Intent intent = new Intent(CartActivity.this, ConfirmActivity.class);
+                Intent intent = new Intent(CartActivity.this, CheckoutActivity.class);
                 intent.putExtra(getString(R.string.account), id);
                 intent.putExtra(getString(R.string.total_price), getTotalPrice());
                 startActivityForResult(intent, 1);
@@ -54,12 +56,17 @@ public class CartActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), getString(R.string.cart_empty), Toast.LENGTH_SHORT).show();
             }
         });
+        sort.setOnClickListener(v -> {
+            Intent intent = new Intent(CartActivity.this, ProductCategoryActivity.class);
+            intent.putExtra(getString(R.string.sort), true);
+            startActivityForResult(intent, 2);
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        CartAdapter adapter = new CartAdapter(this, getCartOrders());
+        CartAdapter adapter = new CartAdapter(this, getSortedCartOrders());
         list.setAdapter(adapter);
         totalPrice.setText(getTotalPrice() + "$");
     }
@@ -90,12 +97,56 @@ public class CartActivity extends AppCompatActivity {
         return arr;
     }
 
+    private Order[] getSortedCartOrders() {
+        ArrayList<Order> orderArr = DBConnector.selectAllOrders();
+        ArrayList<Order> cartArr = new ArrayList<>();
+        ArrayList<Order> sortedArr = new ArrayList<>();
+        for (int i = 0; i < orderArr.size(); i++) {
+            if (orderArr.get(i).getOwner() == id && orderArr.get(i).getIsWishlist() == 0) {
+                cartArr.add(orderArr.get(i));
+            }
+        }
+        for (int i = 0; i < cartArr.size(); i++) {
+            switch (sortCode) {
+                case 0:
+                    sortedArr.add(cartArr.get(i));
+                    break;
+                case 1:
+                    if (DBConnector.selectProduct(cartArr.get(i).getProduct()).getCategory().equals(getString(R.string.console))) {
+                        sortedArr.add(cartArr.get(i));
+                    }
+                    break;
+                case 2:
+                    if (DBConnector.selectProduct(cartArr.get(i).getProduct()).getCategory().equals(getString(R.string.accessory))) {
+                        sortedArr.add(cartArr.get(i));
+                    }
+                    break;
+                case 3:
+                    if (DBConnector.selectProduct(cartArr.get(i).getProduct()).getCategory().equals(getString(R.string.game))) {
+                        sortedArr.add(cartArr.get(i));
+                    }
+                    break;
+            }
+        }
+        Order[] arr = new Order[sortedArr.size()];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = sortedArr.get(i);
+        }
+
+        return arr;
+    }
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1){
             if (resultCode == RESULT_OK) {
                 setResult(RESULT_OK);
                 finish();
+            }
+        }
+        if (requestCode == 2){
+            if (resultCode == RESULT_OK) {
+                sortCode = data.getIntExtra(getString(R.string.category), 0);
             }
         }
     }

@@ -48,7 +48,7 @@ public class SureActivity extends AppCompatActivity {
                     ArrayList<Order> arr = DBConnector.selectAllOrders();
                     for (int i = 0; i < arr.size(); i++) {
                         if (arr.get(i).getProduct() == id) {
-                            DBConnector.deleteProduct(arr.get(i).getProduct());
+                            DBConnector.deleteOrder(arr.get(i).getId());
                         }
                     }
                     DBConnector.deleteProduct(id);

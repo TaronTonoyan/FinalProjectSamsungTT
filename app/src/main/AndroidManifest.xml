@@ -31,7 +31,7 @@
         <activity android:name=".activities.ProductActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activities.CartActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activities.WishlistActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activities.ConfirmActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activities.CheckoutActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activities.AccountSettingsActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activities.SureActivity" android:screenOrientation="portrait"/>
     </application>

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,10 +35,10 @@ public class RegisterActivity extends AppCompatActivity {
     private void initViews() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        email = findViewById(R.id.registerEmailAddress);
-        password = findViewById(R.id.registerPassword);
-        confirmPassword = findViewById(R.id.confirmNewPassword);
-        Button register = findViewById(R.id.registerButton);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+        confirmPassword = findViewById(R.id.confirmPassword);
+        Button register = findViewById(R.id.register);
         DBConnector = new DBShop(this);
 
         register.setOnClickListener(v -> {
