@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.samsung.finalprojectsamsungtt.DBShop;
@@ -30,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Login");
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         Button login = findViewById(R.id.login);

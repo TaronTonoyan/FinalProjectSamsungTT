@@ -33,6 +33,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
     private void initViews() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("Account Settings");
         TextView email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         confirmPassword = findViewById(R.id.confirmPassword);
@@ -41,6 +42,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
         Button delete = findViewById(R.id.delete);
         DBConnector = new DBShop(this);
         long id = getIntent().getLongExtra(getString(R.string.account), -1);
+        actionBar.setTitle(DBConnector.selectAcc(id).getEmail());
         Account acc = DBConnector.selectAcc(id);
 
         email.setText(acc.getEmail());

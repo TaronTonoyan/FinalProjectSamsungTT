@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.samsung.finalprojectsamsungtt.R;
@@ -22,6 +23,8 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Admin");
         Button addAdmins = findViewById(R.id.addAdmins);
         Button addProduct = findViewById(R.id.addProduct);
         Button updateProduct = findViewById(R.id.updateProduct);

@@ -35,24 +35,20 @@ public class CheckoutActivity extends AppCompatActivity {
     private void initViews() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(DBConnector.selectAcc(id).getEmail());
         address = findViewById(R.id.confirmAddress);
         Button confirm = findViewById(R.id.checkout);
         DBConnector = new DBShop(this);
         id = getIntent().getLongExtra(getString(R.string.account), -1);
         Account acc = DBConnector.selectAcc(id);
         total = getIntent().getFloatExtra(getString(R.string.total_price), 0);
-        if (acc.getAddress() == null) {
-            address.setHint(getString(R.string.no_address));
-        } else {
-            address.setHint(getString(R.string.address));
-            address.setText(acc.getAddress());
-        }
+        String orders = getIntent().getStringExtra(getString(R.string.order));
 
         confirm.setOnClickListener(v -> {
             if (address.getText().toString().equals("")) {
                 Toast.makeText(getApplicationContext(), "Please write an address for us", Toast.LENGTH_SHORT).show();
             } else {
-                DBConnector.insertHistory(address.getText().toString(), total);
+                DBConnector.insertHistory(acc.getId(), total, address.getText().toString(), orders);
                 deleteCartOrders();
                 setResult(RESULT_OK);
                 finish();

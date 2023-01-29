@@ -1,5 +1,6 @@
 package com.samsung.finalprojectsamsungtt.activities;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private DBShop DBConnector;
     private Account acc;
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +30,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        actionBar = getSupportActionBar();
         Button gallery = findViewById(R.id.gallery);
         Button cart = findViewById(R.id.cart);
         Button wishlist = findViewById(R.id.wishlist);
         Button accountSettings = findViewById(R.id.accountSettings);
+        Button history = findViewById(R.id.history);
         Button logOut = findViewById(R.id.logOut);
         DBConnector = new DBShop(this);
-        DBConnector.deleteOrder(66);
 
         gallery.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, GalleryActivity.class);
@@ -55,6 +58,11 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, AccountSettingsActivity.class);
             intent.putExtra(getString(R.string.account), acc.getId());
             startActivityForResult(intent, 4);
+        });
+        history.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+            intent.putExtra(getString(R.string.account), acc.getId());
+            startActivity(intent);
         });
         logOut.setOnClickListener(v -> goToLoginPage());
     }
@@ -105,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
         } else if (acc.getIsAdmin() == 1){
             Intent i = new Intent(MainActivity.this, AdminActivity.class);
             startActivityForResult(i, 2);
+        } else {
+            actionBar.setTitle(acc.getEmail());
         }
     }
 

@@ -48,6 +48,7 @@ public class AddProductActivity extends AppCompatActivity {
     private void initViews() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("Admin");
         name = findViewById(R.id.name);
         price = findViewById(R.id.price);
         description = findViewById(R.id.description);

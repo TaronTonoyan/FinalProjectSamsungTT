@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.samsung.finalprojectsamsungtt.models.Account;
+import com.samsung.finalprojectsamsungtt.models.History;
 import com.samsung.finalprojectsamsungtt.models.Order;
 import com.samsung.finalprojectsamsungtt.models.Product;
 
@@ -35,6 +36,10 @@ public class DBShop {
     private static final String COLUMN_PRODUCT = "Product";
     private static final String COLUMN_IS_WISHLIST = "Is_Wishlist";
     private static final String COLUMN_QUANTITY = "Quantity";
+    private static final String COLUMN_HISTORY_OWNER = "Owner";
+    private static final String COLUMN_HISTORY_PRICE = "Price";
+    private static final String COLUMN_HISTORY_ADDRESS = "Address";
+    private static final String COLUMN_HISTORY_ORDERS = "Orders";
 
     private static final int NUM_COLUMN_ID = 0;
     private static final int NUM_COLUMN_EMAIL = 1;
@@ -50,6 +55,10 @@ public class DBShop {
     private static final int NUM_COLUMN_PRODUCT = 2;
     private static final int NUM_COLUMN_IS_WISHLIST = 3;
     private static final int NUM_COLUMN_QUANTITY = 4;
+    private static final int NUM_COLUMN_HISTORY_OWNER = 1;
+    private static final int NUM_COLUMN_HISTORY_PRICE = 2;
+    private static final int NUM_COLUMN_HISTORY_ADDRESS = 3;
+    private static final int NUM_COLUMN_HISTORY_ORDERS = 4;
 
     private final SQLiteDatabase db;
 
@@ -86,10 +95,12 @@ public class DBShop {
         return db.insert(TABLE_ORDERS, null, cv);
     }
 
-    public long insertHistory(String address, float price) {
+    public long insertHistory(long owner, float price, String address, String orders) {
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_ADDRESS, address);
-        cv.put(COLUMN_PRICE, price);
+        cv.put(COLUMN_HISTORY_OWNER, owner);
+        cv.put(COLUMN_HISTORY_PRICE, price);
+        cv.put(COLUMN_HISTORY_ADDRESS, address);
+        cv.put(COLUMN_HISTORY_ORDERS, orders);
         return db.insert(TABLE_HISTORY, null, cv);
     }
 
@@ -124,6 +135,16 @@ public class DBShop {
         return db.update(TABLE_ORDERS, cv, COLUMN_ID + " = ?", new String[] {String.valueOf(ld.getId())});
     }
 
+    public int updateHistory(History ld) {
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_HISTORY_OWNER, ld.getOwner());
+        cv.put(COLUMN_HISTORY_PRICE, ld.getPrice());
+        cv.put(COLUMN_HISTORY_ADDRESS, ld.getAddress());
+        cv.put(COLUMN_HISTORY_ORDERS, ld.getOrders());
+
+        return db.update(TABLE_HISTORY, cv, COLUMN_ID + " = ?", new String[] {String.valueOf(ld.getId())});
+    }
+
     public void deleteAcc(long id) {
         db.delete(TABLE_ACCOUNTS, COLUMN_ID + " = ?", new String[] {String.valueOf(id)});
     }
@@ -136,6 +157,10 @@ public class DBShop {
         db.delete(TABLE_ORDERS, COLUMN_ID + " = ?", new String[] {String.valueOf(id)});
     }
 
+    public void deleteHistory(long id) {
+        db.delete(TABLE_HISTORY, COLUMN_ID + " = ?", new String[] {String.valueOf(id)});
+    }
+
     public void deleteAllAccounts() {
         db.delete(TABLE_ACCOUNTS, null, null);
     }
@@ -146,6 +171,10 @@ public class DBShop {
 
     public void deleteAllOrders() {
         db.delete(TABLE_ORDERS, null, null);
+    }
+
+    public void deleteAllHistory() {
+        db.delete(TABLE_HISTORY, null, null);
     }
 
     public Account selectAcc(long id) {
@@ -180,6 +209,17 @@ public class DBShop {
         int isWishlist = cursor.getInt(NUM_COLUMN_IS_WISHLIST);
         int quantity = cursor.getInt(NUM_COLUMN_QUANTITY);
         return new Order(id, owner, product, isWishlist, quantity);
+    }
+
+    public History selectHistory(long id) {
+        Cursor cursor = db.query(TABLE_HISTORY, null, COLUMN_ID + " = ?", new String[] {String.valueOf(id)}, null, null, null);
+
+        cursor.moveToFirst();
+        long owner = cursor.getLong(NUM_COLUMN_HISTORY_OWNER);
+        float price = cursor.getFloat(NUM_COLUMN_HISTORY_PRICE);
+        String address = cursor.getString(NUM_COLUMN_HISTORY_ADDRESS);
+        String orders = cursor.getString(NUM_COLUMN_HISTORY_ORDERS);
+        return new History(id, owner, price, address, orders);
     }
 
     public ArrayList<Account> selectAllAccounts() {
@@ -237,6 +277,24 @@ public class DBShop {
         return arr;
     }
 
+    public ArrayList<History> selectAllHistory() {
+        Cursor cursor = db.query(TABLE_HISTORY, null, null, null, null, null, null);
+
+        ArrayList<History> arr = new ArrayList<>();
+        cursor.moveToFirst();
+        if (!cursor.isAfterLast()) {
+            do {
+                long id = cursor.getLong(NUM_COLUMN_ID);
+                long owner = cursor.getLong(NUM_COLUMN_HISTORY_OWNER);
+                float price = cursor.getFloat(NUM_COLUMN_HISTORY_PRICE);
+                String address = cursor.getString(NUM_COLUMN_HISTORY_ADDRESS);
+                String orders = cursor.getString(NUM_COLUMN_HISTORY_ORDERS);
+                arr.add(new History(id, owner, price, address, orders));
+            } while (cursor.moveToNext());
+        }
+        return arr;
+    }
+
     private static class OpenHelper extends SQLiteOpenHelper {
 
         OpenHelper(Context context) {
@@ -265,8 +323,10 @@ public class DBShop {
                     COLUMN_QUANTITY + " INTEGER);";
             String queryHistory = "CREATE TABLE " + TABLE_HISTORY + " (" +
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    COLUMN_ADDRESS + " TEXT, " +
-                    COLUMN_PRICE + " REAL);";
+                    COLUMN_HISTORY_OWNER + " INTEGER, " +
+                    COLUMN_HISTORY_PRICE + " REAL, " +
+                    COLUMN_HISTORY_ADDRESS + " TEXT, " +
+                    COLUMN_HISTORY_ORDERS + " TEXT);";
             db.execSQL(queryAcc);
             db.execSQL(queryProduct);
             db.execSQL(queryOrder);

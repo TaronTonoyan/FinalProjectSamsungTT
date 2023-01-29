@@ -58,6 +58,7 @@ public class ProductActivity extends AppCompatActivity {
         accId = getIntent().getLongExtra(getString(R.string.account), -1);
         productId = getIntent().getLongExtra(getString(R.string.product), -1);
         Product product = DBConnector.selectProduct(productId);
+        actionBar.setTitle(DBConnector.selectAcc(accId).getEmail());
 
         name.setText(product.getName());
         price.setText(product.getPrice() + "$");

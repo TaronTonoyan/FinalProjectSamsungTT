@@ -35,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void initViews() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("Register");
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         confirmPassword = findViewById(R.id.confirmPassword);

@@ -25,6 +25,7 @@ public class ProductCategoryActivity extends AppCompatActivity {
     private void initViews() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("Choose Category");
         Button addConsole = findViewById(R.id.addConsole);
         Button addAccessory = findViewById(R.id.addAccessory);
         Button addGame = findViewById(R.id.addGame);

@@ -1,55 +1,54 @@
 package com.samsung.finalprojectsamsungtt.activities;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.ListView;
-
 import com.samsung.finalprojectsamsungtt.DBShop;
 import com.samsung.finalprojectsamsungtt.R;
-import com.samsung.finalprojectsamsungtt.adapters.AccountAdapter;
 import com.samsung.finalprojectsamsungtt.models.Account;
+import com.samsung.finalprojectsamsungtt.models.History;
 
 import java.util.ArrayList;
 
-
-public class AddAdminsActivity extends AppCompatActivity {
+public class HistoryActivity extends AppCompatActivity {
 
     private DBShop DBConnector;
+    private TextView text;
+    private long id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_admins);
+        setContentView(R.layout.activity_history);
         initViews();
     }
 
     private void initViews() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("Admin");
-        ListView list = findViewById(R.id.listView);
+        TextView text = findViewById(R.id.orders);
+        id = getIntent().getLongExtra(getString(R.string.account), -1);
         DBConnector = new DBShop(this);
-        AccountAdapter adapter = new AccountAdapter(this, getAccounts());
-        list.setAdapter(adapter);
+        actionBar.setTitle(DBConnector.selectAcc(id).getEmail());
+        text.setText(getHistory());
     }
 
-    private Account[] getAccounts() {
-        ArrayList<Account> accountArr = DBConnector.selectAllAccounts();
-        Account[] arr = new Account[accountArr.size()-1];
-        
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = accountArr.get(i+1);
+    private String getHistory() {
+        ArrayList<History> arr = DBConnector.selectAllHistory();
+        String ans = "";
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i).getOwner() == id) {
+                ans += arr.get(i).getAddress() + ": " + arr.get(i).getPrice() + "$\n" + arr.get(i).getOrders();
+            }
         }
-
-        return arr;
-
+        return ans;
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -59,6 +58,5 @@ public class AddAdminsActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 }

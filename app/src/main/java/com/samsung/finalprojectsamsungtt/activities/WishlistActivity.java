@@ -35,11 +35,18 @@ public class WishlistActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         list = findViewById(R.id.listView);
+        Button cart = findViewById(R.id.cart);
         Button sort = findViewById(R.id.sort);
         id = getIntent().getLongExtra(getString(R.string.wishlist), -1);
         DBConnector = new DBShop(this);
+        actionBar.setTitle(DBConnector.selectAcc(id).getEmail());
         sortCode = 0;
 
+        cart.setOnClickListener(v -> {
+            Intent intent = new Intent(WishlistActivity.this, CartActivity.class);
+            intent.putExtra(getString(R.string.cart), id);
+            startActivityForResult(intent, 3);
+        });
         sort.setOnClickListener(v -> {
             Intent intent = new Intent(WishlistActivity.this, ProductCategoryActivity.class);
             intent.putExtra(getString(R.string.sort), true);

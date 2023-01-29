@@ -3,6 +3,7 @@ package com.samsung.finalprojectsamsungtt.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -35,11 +36,24 @@ public class GalleryActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         list = findViewById(R.id.listView);
+        Button cart = findViewById(R.id.cart);
         Button sort = findViewById(R.id.sort);
         DBConnector = new DBShop(this);
         id = getIntent().getLongExtra(getString(R.string.account), -1);
         sortCode = 0;
+        cart.setVisibility(View.GONE);
 
+        if (id > 0) {
+            actionBar.setTitle(DBConnector.selectAcc(id).getEmail());
+            cart.setVisibility(View.VISIBLE);
+            cart.setOnClickListener(v -> {
+                Intent intent = new Intent(GalleryActivity.this, CartActivity.class);
+                intent.putExtra(getString(R.string.cart), id);
+                startActivityForResult(intent, 3);
+            });
+        } else {
+            actionBar.setTitle("Admin");
+        }
         sort.setOnClickListener(v -> {
             Intent intent = new Intent(GalleryActivity.this, ProductCategoryActivity.class);
             intent.putExtra(getString(R.string.sort), true);

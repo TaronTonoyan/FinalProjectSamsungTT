@@ -44,6 +44,7 @@ public class CartActivity extends AppCompatActivity {
         Button order = findViewById(R.id.order);
         DBConnector = new DBShop(this);
         id = getIntent().getLongExtra(getString(R.string.cart), -1);
+        actionBar.setTitle(DBConnector.selectAcc(id).getEmail());
         sortCode = 0;
 
         order.setOnClickListener(v -> {
@@ -51,6 +52,7 @@ public class CartActivity extends AppCompatActivity {
                 Intent intent = new Intent(CartActivity.this, CheckoutActivity.class);
                 intent.putExtra(getString(R.string.account), id);
                 intent.putExtra(getString(R.string.total_price), getTotalPrice());
+                intent.putExtra(getString(R.string.order), historyOrders());
                 startActivityForResult(intent, 1);
             } else {
                 Toast.makeText(getApplicationContext(), getString(R.string.cart_empty), Toast.LENGTH_SHORT).show();
@@ -134,6 +136,17 @@ public class CartActivity extends AppCompatActivity {
         }
 
         return arr;
+    }
+
+    private String historyOrders() {
+        Order[] orderArr = getCartOrders();
+        String ans = "";
+        for (int i = 0; i < orderArr.length; i++) {
+            Product product = DBConnector.selectProduct(orderArr[i].getProduct());
+            ans += orderArr[i].getQuantity() + " " + product.getName() + "\n";
+        }
+        
+        return ans;
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
