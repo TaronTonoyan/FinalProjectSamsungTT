@@ -1,5 +1,6 @@
 package com.samsung.finalprojectsamsungtt.activities;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -43,8 +44,10 @@ public class ProductActivity extends AppCompatActivity {
         initViews();
     }
 
+    @SuppressLint("SetTextI18n")
     private void initViews() {
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         ImageView image = findViewById(R.id.image);
         TextView name = findViewById(R.id.name);
@@ -141,10 +144,9 @@ public class ProductActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            this.finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

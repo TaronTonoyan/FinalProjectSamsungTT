@@ -1,5 +1,6 @@
 package com.samsung.finalprojectsamsungtt.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -47,8 +48,10 @@ public class AddProductActivity extends AppCompatActivity {
         initViews();
     }
 
+    @SuppressLint("SetTextI18n")
     private void initViews() {
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("Admin");
         name = findViewById(R.id.name);
@@ -153,10 +156,9 @@ public class AddProductActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            this.finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

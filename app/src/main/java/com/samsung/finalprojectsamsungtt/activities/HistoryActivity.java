@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.samsung.finalprojectsamsungtt.DBShop;
 import com.samsung.finalprojectsamsungtt.R;
-import com.samsung.finalprojectsamsungtt.models.Account;
 import com.samsung.finalprojectsamsungtt.models.History;
 
 import java.util.ArrayList;
@@ -18,7 +17,6 @@ import java.util.ArrayList;
 public class HistoryActivity extends AppCompatActivity {
 
     private DBShop DBConnector;
-    private TextView text;
     private long id;
 
     @Override
@@ -30,6 +28,7 @@ public class HistoryActivity extends AppCompatActivity {
 
     private void initViews() {
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         TextView text = findViewById(R.id.orders);
         id = getIntent().getLongExtra(getString(R.string.account), -1);
@@ -40,21 +39,20 @@ public class HistoryActivity extends AppCompatActivity {
 
     private String getHistory() {
         ArrayList<History> arr = DBConnector.selectAllHistory();
-        String ans = "";
+        StringBuilder ans = new StringBuilder();
         for (int i = 0; i < arr.size(); i++) {
             if (arr.get(i).getOwner() == id) {
-                ans += arr.get(i).getAddress() + ": " + arr.get(i).getPrice() + "$\n" + arr.get(i).getOrders();
+                ans.append(arr.get(i).getAddress()).append(": ").append(arr.get(i).getPrice()).append("$\n").append(arr.get(i).getOrders());
             }
         }
-        return ans;
+        return ans.toString();
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            this.finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

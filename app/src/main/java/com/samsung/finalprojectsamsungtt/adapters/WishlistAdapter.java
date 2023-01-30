@@ -1,5 +1,6 @@
 package com.samsung.finalprojectsamsungtt.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -37,6 +38,7 @@ public class WishlistAdapter extends ArrayAdapter<Order> {
         DBConnector = new DBShop(context);
     }
 
+    @SuppressLint("SetTextI18n")
     public View getView(int position, View convertView, ViewGroup parent) {
         final Order order = getItem(position);
         final Product product = DBConnector.selectProduct(order.getProduct());

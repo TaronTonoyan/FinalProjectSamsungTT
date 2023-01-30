@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     private Account acc;
     private ActionBar actionBar;
     boolean remember;
-    private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
 
     private final int LOGIN_ACTIVITY_RESULT_CODE = 1;
@@ -85,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void rememberLogin() {
-        sharedPref = getApplicationContext().getSharedPreferences(getString(R.string.account), MODE_PRIVATE);
+        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(getString(R.string.account), MODE_PRIVATE);
         editor = sharedPref.edit();
         long id = sharedPref.getLong(getString(R.string.account), -1);
         if (id != -1) {

@@ -31,6 +31,7 @@ public class AddAdminsActivity extends AppCompatActivity {
 
     private void initViews() {
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("Admin");
         ListView list = findViewById(R.id.listView);
@@ -52,10 +53,9 @@ public class AddAdminsActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            this.finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

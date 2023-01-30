@@ -25,6 +25,7 @@ public class AdminActivity extends AppCompatActivity {
 
     private void initViews() {
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setTitle("Admin");
         Button addAdmins = findViewById(R.id.addAdmins);
         Button addProduct = findViewById(R.id.addProduct);

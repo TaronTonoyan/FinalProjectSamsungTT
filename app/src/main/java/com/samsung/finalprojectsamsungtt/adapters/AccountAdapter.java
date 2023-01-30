@@ -16,7 +16,7 @@ import com.samsung.finalprojectsamsungtt.models.Account;
 
 public class AccountAdapter extends ArrayAdapter<Account> {
 
-    private DBShop DBConnector;
+    private final DBShop DBConnector;
 
     public AccountAdapter(@NonNull Context context, Account[] arr) {
         super(context, R.layout.account_item, arr);

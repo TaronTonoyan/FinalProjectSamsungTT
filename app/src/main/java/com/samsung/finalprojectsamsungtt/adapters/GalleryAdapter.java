@@ -1,5 +1,6 @@
 package com.samsung.finalprojectsamsungtt.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,7 +15,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.samsung.finalprojectsamsungtt.DBShop;
 import com.samsung.finalprojectsamsungtt.R;
 import com.samsung.finalprojectsamsungtt.activities.AddProductActivity;
 import com.samsung.finalprojectsamsungtt.activities.SureActivity;
@@ -28,17 +28,16 @@ import java.net.URL;
 
 public class GalleryAdapter extends ArrayAdapter<Product> {
 
-    private DBShop DBConnector;
     private Bitmap bitmap;
     private URL url;
-    private long id;
+    private final long id;
 
     public GalleryAdapter(@NonNull Context context, Product[] arr, long id) {
         super(context, R.layout.gallery_item, arr);
-        DBConnector = new DBShop(context);
         this.id = id;
     }
 
+    @SuppressLint("SetTextI18n")
     public View getView(int position, View convertView, ViewGroup parent) {
         final Product product = getItem(position);
 

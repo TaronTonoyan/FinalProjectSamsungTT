@@ -1,5 +1,6 @@
 package com.samsung.finalprojectsamsungtt.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -40,6 +41,7 @@ public class CartActivity extends AppCompatActivity {
 
     private void initViews() {
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         totalPrice = findViewById(R.id.priceTotal);
         list = findViewById(R.id.listView);
@@ -68,6 +70,7 @@ public class CartActivity extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onStart() {
         super.onStart();
@@ -143,13 +146,13 @@ public class CartActivity extends AppCompatActivity {
 
     private String historyOrders() {
         Order[] orderArr = getCartOrders();
-        String ans = "";
-        for (int i = 0; i < orderArr.length; i++) {
-            Product product = DBConnector.selectProduct(orderArr[i].getProduct());
-            ans += orderArr[i].getQuantity() + " " + product.getName() + "\n";
+        StringBuilder ans = new StringBuilder();
+        for (Order order : orderArr) {
+            Product product = DBConnector.selectProduct(order.getProduct());
+            ans.append(order.getQuantity()).append(" ").append(product.getName()).append("\n");
         }
         
-        return ans;
+        return ans.toString();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -169,10 +172,9 @@ public class CartActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            this.finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
