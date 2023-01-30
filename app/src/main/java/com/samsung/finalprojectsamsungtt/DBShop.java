@@ -1,5 +1,6 @@
 package com.samsung.finalprojectsamsungtt;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -67,54 +68,54 @@ public class DBShop {
         db = openHelper.getWritableDatabase();
     }
 
-    public long insertAcc(String email, String password, int isAdmin, String address) {
+    public void insertAcc(String email, String password, int isAdmin, String address) {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_EMAIL, email);
         cv.put(COLUMN_PASSWORD, password);
         cv.put(COLUMN_IS_ADMIN, isAdmin);
         cv.put(COLUMN_ADDRESS, address);
-        return db.insert(TABLE_ACCOUNTS, null, cv);
+        db.insert(TABLE_ACCOUNTS, null, cv);
     }
 
-    public long insertProduct(String name, double price, String category, String description, String image) {
+    public void insertProduct(String name, double price, String category, String description, String image) {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, name);
         cv.put(COLUMN_PRICE, price);
         cv.put(COLUMN_CATEGORY, category);
         cv.put(COLUMN_DESCRIPTION, description);
         cv.put(COLUMN_IMAGE, image);
-        return db.insert(TABLE_PRODUCTS, null, cv);
+        db.insert(TABLE_PRODUCTS, null, cv);
     }
 
-    public long insertOrder(long owner, long product, int isWishlist, int quantity) {
+    public void insertOrder(long owner, long product, int isWishlist, int quantity) {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_OWNER, owner);
         cv.put(COLUMN_PRODUCT, product);
         cv.put(COLUMN_IS_WISHLIST, isWishlist);
         cv.put(COLUMN_QUANTITY, quantity);
-        return db.insert(TABLE_ORDERS, null, cv);
+        db.insert(TABLE_ORDERS, null, cv);
     }
 
-    public long insertHistory(long owner, float price, String address, String orders) {
+    public void insertHistory(long owner, float price, String address, String orders) {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_HISTORY_OWNER, owner);
         cv.put(COLUMN_HISTORY_PRICE, price);
         cv.put(COLUMN_HISTORY_ADDRESS, address);
         cv.put(COLUMN_HISTORY_ORDERS, orders);
-        return db.insert(TABLE_HISTORY, null, cv);
+        db.insert(TABLE_HISTORY, null, cv);
     }
 
-    public int updateAcc(Account ld) {
+    public void updateAcc(Account ld) {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_EMAIL, ld.getEmail());
         cv.put(COLUMN_PASSWORD, ld.getPassword());
         cv.put(COLUMN_IS_ADMIN, ld.getIsAdmin());
         cv.put(COLUMN_ADDRESS, ld.getAddress());
 
-        return db.update(TABLE_ACCOUNTS, cv, COLUMN_ID + " = ?", new String[] {String.valueOf(ld.getId())});
+        db.update(TABLE_ACCOUNTS, cv, COLUMN_ID + " = ?", new String[]{String.valueOf(ld.getId())});
     }
 
-    public int updateProduct(Product ld) {
+    public void updateProduct(Product ld) {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, ld.getName());
         cv.put(COLUMN_PRICE, ld.getPrice());
@@ -122,27 +123,17 @@ public class DBShop {
         cv.put(COLUMN_DESCRIPTION, ld.getDescription());
         cv.put(COLUMN_IMAGE, ld.getImage());
 
-        return db.update(TABLE_PRODUCTS, cv, COLUMN_ID + " = ?", new String[] {String.valueOf(ld.getId())});
+        db.update(TABLE_PRODUCTS, cv, COLUMN_ID + " = ?", new String[]{String.valueOf(ld.getId())});
     }
 
-    public int updateOrder(Order ld) {
+    public void updateOrder(Order ld) {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_OWNER, ld.getOwner());
         cv.put(COLUMN_PRODUCT, ld.getProduct());
         cv.put(COLUMN_IS_WISHLIST, ld.getIsWishlist());
         cv.put(COLUMN_QUANTITY, ld.getQuantity());
 
-        return db.update(TABLE_ORDERS, cv, COLUMN_ID + " = ?", new String[] {String.valueOf(ld.getId())});
-    }
-
-    public int updateHistory(History ld) {
-        ContentValues cv = new ContentValues();
-        cv.put(COLUMN_HISTORY_OWNER, ld.getOwner());
-        cv.put(COLUMN_HISTORY_PRICE, ld.getPrice());
-        cv.put(COLUMN_HISTORY_ADDRESS, ld.getAddress());
-        cv.put(COLUMN_HISTORY_ORDERS, ld.getOrders());
-
-        return db.update(TABLE_HISTORY, cv, COLUMN_ID + " = ?", new String[] {String.valueOf(ld.getId())});
+        db.update(TABLE_ORDERS, cv, COLUMN_ID + " = ?", new String[]{String.valueOf(ld.getId())});
     }
 
     public void deleteAcc(long id) {
@@ -157,28 +148,8 @@ public class DBShop {
         db.delete(TABLE_ORDERS, COLUMN_ID + " = ?", new String[] {String.valueOf(id)});
     }
 
-    public void deleteHistory(long id) {
-        db.delete(TABLE_HISTORY, COLUMN_ID + " = ?", new String[] {String.valueOf(id)});
-    }
-
-    public void deleteAllAccounts() {
-        db.delete(TABLE_ACCOUNTS, null, null);
-    }
-
-    public void deleteAllProducts() {
-        db.delete(TABLE_PRODUCTS, null, null);
-    }
-
-    public void deleteAllOrders() {
-        db.delete(TABLE_ORDERS, null, null);
-    }
-
-    public void deleteAllHistory() {
-        db.delete(TABLE_HISTORY, null, null);
-    }
-
     public Account selectAcc(long id) {
-        Cursor cursor = db.query(TABLE_ACCOUNTS, null, COLUMN_ID + " = ?", new String[] {String.valueOf(id)}, null, null, null);
+        @SuppressLint("Recycle") Cursor cursor = db.query(TABLE_ACCOUNTS, null, COLUMN_ID + " = ?", new String[] {String.valueOf(id)}, null, null, null);
 
         cursor.moveToFirst();
         String email = cursor.getString(NUM_COLUMN_EMAIL);
@@ -189,7 +160,7 @@ public class DBShop {
     }
 
     public Product selectProduct(long id) {
-        Cursor cursor = db.query(TABLE_PRODUCTS, null, COLUMN_ID + " = ?", new String[] {String.valueOf(id)}, null, null, null);
+        @SuppressLint("Recycle") Cursor cursor = db.query(TABLE_PRODUCTS, null, COLUMN_ID + " = ?", new String[] {String.valueOf(id)}, null, null, null);
 
         cursor.moveToFirst();
         String name = cursor.getString(NUM_COLUMN_NAME);
@@ -200,30 +171,8 @@ public class DBShop {
         return new Product(id, name, price, category, description, image);
     }
 
-    public Order selectOrder(long id) {
-        Cursor cursor = db.query(TABLE_ORDERS, null, COLUMN_ID + " = ?", new String[] {String.valueOf(id)}, null, null, null);
-
-        cursor.moveToFirst();
-        long owner = cursor.getLong(NUM_COLUMN_OWNER);
-        long product = cursor.getLong(NUM_COLUMN_PRODUCT);
-        int isWishlist = cursor.getInt(NUM_COLUMN_IS_WISHLIST);
-        int quantity = cursor.getInt(NUM_COLUMN_QUANTITY);
-        return new Order(id, owner, product, isWishlist, quantity);
-    }
-
-    public History selectHistory(long id) {
-        Cursor cursor = db.query(TABLE_HISTORY, null, COLUMN_ID + " = ?", new String[] {String.valueOf(id)}, null, null, null);
-
-        cursor.moveToFirst();
-        long owner = cursor.getLong(NUM_COLUMN_HISTORY_OWNER);
-        float price = cursor.getFloat(NUM_COLUMN_HISTORY_PRICE);
-        String address = cursor.getString(NUM_COLUMN_HISTORY_ADDRESS);
-        String orders = cursor.getString(NUM_COLUMN_HISTORY_ORDERS);
-        return new History(id, owner, price, address, orders);
-    }
-
     public ArrayList<Account> selectAllAccounts() {
-        Cursor cursor = db.query(TABLE_ACCOUNTS, null, null, null, null, null, null);
+        @SuppressLint("Recycle") Cursor cursor = db.query(TABLE_ACCOUNTS, null, null, null, null, null, null);
 
         ArrayList<Account> arr = new ArrayList<>();
         cursor.moveToFirst();
@@ -241,7 +190,7 @@ public class DBShop {
     }
 
     public ArrayList<Product> selectAllProducts() {
-        Cursor cursor = db.query(TABLE_PRODUCTS, null, null, null, null, null, null);
+        @SuppressLint("Recycle") Cursor cursor = db.query(TABLE_PRODUCTS, null, null, null, null, null, null);
 
         ArrayList<Product> arr = new ArrayList<>();
         cursor.moveToFirst();
@@ -260,7 +209,7 @@ public class DBShop {
     }
 
     public ArrayList<Order> selectAllOrders() {
-        Cursor cursor = db.query(TABLE_ORDERS, null, null, null, null, null, null);
+        @SuppressLint("Recycle") Cursor cursor = db.query(TABLE_ORDERS, null, null, null, null, null, null);
 
         ArrayList<Order> arr = new ArrayList<>();
         cursor.moveToFirst();
@@ -278,7 +227,7 @@ public class DBShop {
     }
 
     public ArrayList<History> selectAllHistory() {
-        Cursor cursor = db.query(TABLE_HISTORY, null, null, null, null, null, null);
+        @SuppressLint("Recycle") Cursor cursor = db.query(TABLE_HISTORY, null, null, null, null, null, null);
 
         ArrayList<History> arr = new ArrayList<>();
         cursor.moveToFirst();
