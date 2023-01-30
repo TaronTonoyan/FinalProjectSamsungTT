@@ -1,8 +1,12 @@
 package com.samsung.finalprojectsamsungtt.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -13,6 +17,8 @@ import com.samsung.finalprojectsamsungtt.DBShop;
 import com.samsung.finalprojectsamsungtt.R;
 import com.samsung.finalprojectsamsungtt.models.Account;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
@@ -20,7 +26,11 @@ public class LoginActivity extends AppCompatActivity {
     private DBShop DBConnector;
     private EditText email;
     private EditText password;
+    private CheckBox showPassword;
+    private CheckBox rememberMe;
     private Account acc = null;
+
+    private final int REGISTER_ACTIVITY_RESULT_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,28 +45,24 @@ public class LoginActivity extends AppCompatActivity {
         actionBar.setTitle("Login");
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
+        showPassword = findViewById(R.id.showPassword);
+        rememberMe = findViewById(R.id.rememberMe);
         Button login = findViewById(R.id.login);
         Button register = findViewById(R.id.register);
         DBConnector = new DBShop(this);
 
+        showPassword.setOnClickListener(v -> {
+            if (showPassword.isChecked()) {
+                password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            } else {
+                password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            }
+        });
         login.setOnClickListener(view -> login(email.getText().toString(), password.getText().toString()));
         register.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivityForResult(intent, 1);
+            startActivityForResult(intent, REGISTER_ACTIVITY_RESULT_CODE);
         });
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1){
-            if (resultCode == RESULT_OK) {
-                String accEmail = data.getStringExtra(getString(R.string.email));
-                String accPassword = data.getStringExtra(getString(R.string.password));
-                DBConnector.insertAcc(accEmail, accPassword, 0, null);
-                login(accEmail, accPassword);
-            }
-        }
     }
 
     private void login(String email, String password) {
@@ -80,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
             i.putExtra(getString(R.string.email), email);
             i.putExtra(getString(R.string.password), password);
             setResult(RESULT_OK, i);
+            i.putExtra(getString(R.string.account), rememberMe.isChecked());
             finish();
         }
     }
@@ -95,6 +102,19 @@ public class LoginActivity extends AppCompatActivity {
         }
         if (newEmail) {
             DBConnector.insertAcc(email, password, 1, null);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REGISTER_ACTIVITY_RESULT_CODE){
+            if (resultCode == RESULT_OK) {
+                String accEmail = data.getStringExtra(getString(R.string.email));
+                String accPassword = data.getStringExtra(getString(R.string.password));
+                DBConnector.insertAcc(accEmail, accPassword, 0, null);
+                login(accEmail, accPassword);
+            }
         }
     }
 }

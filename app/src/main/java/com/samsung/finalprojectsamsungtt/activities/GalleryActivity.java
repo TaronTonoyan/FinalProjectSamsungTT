@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -24,6 +25,9 @@ public class GalleryActivity extends AppCompatActivity {
     private ListView list;
     private int sortCode;
     private long id;
+
+    private final int SORT_RESULT_CODE = 1;
+    private final int CART_ACTIVITY_RESULT_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +48,12 @@ public class GalleryActivity extends AppCompatActivity {
         cart.setVisibility(View.GONE);
 
         if (id > 0) {
-            actionBar.setTitle(DBConnector.selectAcc(id).getEmail());
+            actionBar.setTitle("Gallery");
             cart.setVisibility(View.VISIBLE);
             cart.setOnClickListener(v -> {
                 Intent intent = new Intent(GalleryActivity.this, CartActivity.class);
                 intent.putExtra(getString(R.string.cart), id);
-                startActivityForResult(intent, 3);
+                startActivityForResult(intent, CART_ACTIVITY_RESULT_CODE);
             });
         } else {
             actionBar.setTitle("Admin");
@@ -57,7 +61,7 @@ public class GalleryActivity extends AppCompatActivity {
         sort.setOnClickListener(v -> {
             Intent intent = new Intent(GalleryActivity.this, ProductCategoryActivity.class);
             intent.putExtra(getString(R.string.sort), true);
-            startActivityForResult(intent, 1);
+            startActivityForResult(intent, SORT_RESULT_CODE);
         });
     }
 
@@ -104,9 +108,14 @@ public class GalleryActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1){
+        if (requestCode == SORT_RESULT_CODE){
             if (resultCode == RESULT_OK) {
                 sortCode = data.getIntExtra(getString(R.string.category), 0);
+            }
+        }
+        if (requestCode == CART_ACTIVITY_RESULT_CODE){
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(getApplicationContext(), getString(R.string.order_delivered), Toast.LENGTH_SHORT).show();
             }
         }
     }

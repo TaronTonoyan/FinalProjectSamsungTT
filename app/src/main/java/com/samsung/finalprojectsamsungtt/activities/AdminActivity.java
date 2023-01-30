@@ -13,7 +13,8 @@ import com.samsung.finalprojectsamsungtt.R;
 
 public class AdminActivity extends AppCompatActivity {
 
-    private boolean isRoot;
+    private final int ADD_PRODUCT_RESULT_CODE = 1;
+    private final int LOG_OUT_CONFIRMATION_RESULT_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class AdminActivity extends AppCompatActivity {
         Button updateProduct = findViewById(R.id.updateProduct);
         Button deleteProduct = findViewById(R.id.deleteProduct);
         Button logOut = findViewById(R.id.logout);
-        isRoot = getIntent().getBooleanExtra(getString(R.string.is_root), false);
+        boolean isRoot = getIntent().getBooleanExtra(getString(R.string.is_root), false);
 
         Toast.makeText(getApplicationContext(), getString(R.string.admin_login), Toast.LENGTH_SHORT).show();
 
@@ -44,7 +45,7 @@ public class AdminActivity extends AppCompatActivity {
         });
         addProduct.setOnClickListener(v -> {
             Intent intent = new Intent(AdminActivity.this, ProductCategoryActivity.class);
-            startActivityForResult(intent, 1);
+            startActivityForResult(intent, ADD_PRODUCT_RESULT_CODE);
         });
         updateProduct.setOnClickListener(v -> {
             Intent intent = new Intent(AdminActivity.this, GalleryActivity.class);
@@ -57,18 +58,26 @@ public class AdminActivity extends AppCompatActivity {
             startActivity(intent);
         });
         logOut.setOnClickListener(v -> {
-            Intent intent = new Intent();
-            setResult(RESULT_OK, intent);
-            finish();
+            Intent intent = new Intent(AdminActivity.this, SureActivity.class);
+            long a = 0;
+            intent.putExtra(getString(R.string.yes), a);
+            startActivityForResult(intent, LOG_OUT_CONFIRMATION_RESULT_CODE);
         });
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1){
+        if (requestCode == ADD_PRODUCT_RESULT_CODE){
             if (resultCode == RESULT_OK) {
                 Toast.makeText(getApplicationContext(), getString(R.string.product_added), Toast.LENGTH_SHORT).show();
+            }
+        }
+        if (requestCode == LOG_OUT_CONFIRMATION_RESULT_CODE){
+            if (resultCode == RESULT_OK) {
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
+                finish();
             }
         }
     }

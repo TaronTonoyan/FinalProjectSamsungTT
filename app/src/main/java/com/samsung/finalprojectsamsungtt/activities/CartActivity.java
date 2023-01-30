@@ -28,6 +28,9 @@ public class CartActivity extends AppCompatActivity {
     private int sortCode;
     private TextView totalPrice;
 
+    private final int ORDER_RESULT_CODE = 1;
+    private final int SORT_RESULT_CODE = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +47,7 @@ public class CartActivity extends AppCompatActivity {
         Button order = findViewById(R.id.order);
         DBConnector = new DBShop(this);
         id = getIntent().getLongExtra(getString(R.string.cart), -1);
-        actionBar.setTitle(DBConnector.selectAcc(id).getEmail());
+        actionBar.setTitle("Cart");
         sortCode = 0;
 
         order.setOnClickListener(v -> {
@@ -53,7 +56,7 @@ public class CartActivity extends AppCompatActivity {
                 intent.putExtra(getString(R.string.account), id);
                 intent.putExtra(getString(R.string.total_price), getTotalPrice());
                 intent.putExtra(getString(R.string.order), historyOrders());
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, ORDER_RESULT_CODE);
             } else {
                 Toast.makeText(getApplicationContext(), getString(R.string.cart_empty), Toast.LENGTH_SHORT).show();
             }
@@ -61,7 +64,7 @@ public class CartActivity extends AppCompatActivity {
         sort.setOnClickListener(v -> {
             Intent intent = new Intent(CartActivity.this, ProductCategoryActivity.class);
             intent.putExtra(getString(R.string.sort), true);
-            startActivityForResult(intent, 2);
+            startActivityForResult(intent, SORT_RESULT_CODE);
         });
     }
 
@@ -151,13 +154,13 @@ public class CartActivity extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1){
+        if (requestCode == ORDER_RESULT_CODE){
             if (resultCode == RESULT_OK) {
                 setResult(RESULT_OK);
                 finish();
             }
         }
-        if (requestCode == 2){
+        if (requestCode == SORT_RESULT_CODE){
             if (resultCode == RESULT_OK) {
                 sortCode = data.getIntExtra(getString(R.string.category), 0);
             }

@@ -74,6 +74,7 @@ public class WishlistAdapter extends ArrayAdapter<Order> {
                 Intent intent = new Intent(getContext(), SureActivity.class);
                 intent.putExtra(getContext().getString(R.string.account), order.getOwner());
                 intent.putExtra(getContext().getString(R.string.product), order.getProduct());
+                intent.putExtra(getContext().getString(R.string.no), 4);
                 getContext().startActivity(intent);
             });
         }

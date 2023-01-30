@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -24,6 +25,9 @@ public class WishlistActivity extends AppCompatActivity {
     private int sortCode;
     private ListView list;
 
+    private final int SORT_RESULT_CODE = 1;
+    private final int CART_ACTIVITY_RESULT_CODE = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,18 +43,18 @@ public class WishlistActivity extends AppCompatActivity {
         Button sort = findViewById(R.id.sort);
         id = getIntent().getLongExtra(getString(R.string.wishlist), -1);
         DBConnector = new DBShop(this);
-        actionBar.setTitle(DBConnector.selectAcc(id).getEmail());
+        actionBar.setTitle("Wishlist");
         sortCode = 0;
 
         cart.setOnClickListener(v -> {
             Intent intent = new Intent(WishlistActivity.this, CartActivity.class);
             intent.putExtra(getString(R.string.cart), id);
-            startActivityForResult(intent, 3);
+            startActivityForResult(intent, CART_ACTIVITY_RESULT_CODE);
         });
         sort.setOnClickListener(v -> {
             Intent intent = new Intent(WishlistActivity.this, ProductCategoryActivity.class);
             intent.putExtra(getString(R.string.sort), true);
-            startActivityForResult(intent, 1);
+            startActivityForResult(intent, SORT_RESULT_CODE);
         });
     }
 
@@ -103,9 +107,14 @@ public class WishlistActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1){
+        if (requestCode == SORT_RESULT_CODE){
             if (resultCode == RESULT_OK) {
                 sortCode = data.getIntExtra(getString(R.string.category), 0);
+            }
+        }
+        if (requestCode == CART_ACTIVITY_RESULT_CODE){
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(getApplicationContext(), getString(R.string.order_delivered), Toast.LENGTH_SHORT).show();
             }
         }
     }

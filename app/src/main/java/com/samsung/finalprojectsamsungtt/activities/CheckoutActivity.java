@@ -35,7 +35,7 @@ public class CheckoutActivity extends AppCompatActivity {
     private void initViews() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(DBConnector.selectAcc(id).getEmail());
+        actionBar.setTitle("Checkout");
         address = findViewById(R.id.confirmAddress);
         Button confirm = findViewById(R.id.checkout);
         DBConnector = new DBShop(this);

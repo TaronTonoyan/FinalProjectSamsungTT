@@ -34,7 +34,7 @@ public class HistoryActivity extends AppCompatActivity {
         TextView text = findViewById(R.id.orders);
         id = getIntent().getLongExtra(getString(R.string.account), -1);
         DBConnector = new DBShop(this);
-        actionBar.setTitle(DBConnector.selectAcc(id).getEmail());
+        actionBar.setTitle("History");
         text.setText(getHistory());
     }
 

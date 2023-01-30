@@ -73,4 +73,6 @@
     <string name="address">Address</string>
     <string name="update_your_info">Update your info</string>
     <string name="history">History</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="show_password">Show Password</string>
 </resources>

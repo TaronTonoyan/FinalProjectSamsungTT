@@ -38,6 +38,8 @@ public class AddProductActivity extends AppCompatActivity {
     private Product product;
     private Button addCategory;
 
+    private final int ADD_CATEGORY_RESULT_CODE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,14 +124,14 @@ public class AddProductActivity extends AppCompatActivity {
         addCategory.setOnClickListener(v -> {
             Intent intent = new Intent(AddProductActivity.this, ProductCategoryActivity.class);
             intent.putExtra(getString(R.string.category), true);
-            startActivityForResult(intent, 1);
+            startActivityForResult(intent, ADD_CATEGORY_RESULT_CODE);
         });
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1){
+        if (requestCode == ADD_CATEGORY_RESULT_CODE){
             if (resultCode == RESULT_OK) {
                 category = data.getStringExtra(getString(R.string.add_products_category));
                 addCategory.setText(category);
