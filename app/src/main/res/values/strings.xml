@@ -46,7 +46,6 @@
     <string name="console">Gaming Console</string>
     <string name="accessory">Accessory</string>
     <string name="game">VideoGame</string>
-    <string name="main_activity_text">Welcome, you are successfully logged in to your Account</string>
     <string name="gallery">go to gallery</string>
     <string name="cart">cart</string>
     <string name="wishlist">wishlist</string>
@@ -59,8 +58,6 @@
     <string name="remove_from_cart">remove from cart</string>
     <string name="remove_from_wishlist">remove from wishlist</string>
     <string name="confirm_text">Please Confirm Your Address</string>
-    <string name="confirm">confirm</string>
-    <string name="no_address">Address not assigned</string>
     <string name="cart_empty">Your Cart is empty</string>
     <string name="order_delivered">Enjoy your Order</string>
     <string name="are_you_sure">Are You Sure?</string>

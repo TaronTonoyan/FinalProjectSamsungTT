@@ -1,5 +1,6 @@
 package com.samsung.finalprojectsamsungtt.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ public class AccountAdapter extends ArrayAdapter<Account> {
         DBConnector = new DBShop(context);
     }
 
+    @SuppressLint("InflateParams")
     public View getView(int position, View convertView, ViewGroup parent) {
 
         final Account acc = getItem(position);

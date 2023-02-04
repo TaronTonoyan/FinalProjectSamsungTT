@@ -38,7 +38,7 @@ public class WishlistAdapter extends ArrayAdapter<Order> {
         DBConnector = new DBShop(context);
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "InflateParams"})
     public View getView(int position, View convertView, ViewGroup parent) {
         final Order order = getItem(position);
         final Product product = DBConnector.selectProduct(order.getProduct());

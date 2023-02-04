@@ -37,7 +37,7 @@ public class GalleryAdapter extends ArrayAdapter<Product> {
         this.id = id;
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "InflateParams"})
     public View getView(int position, View convertView, ViewGroup parent) {
         final Product product = getItem(position);
 
