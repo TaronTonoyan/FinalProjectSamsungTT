@@ -50,7 +50,6 @@ public class AccountSettingsActivity extends AppCompatActivity {
         Button delete = findViewById(R.id.delete);
         DBConnector = new DBShop(this);
         long id = getIntent().getLongExtra(getString(R.string.account), -1);
-        actionBar.setTitle("Account Settings");
         Account acc = DBConnector.selectAcc(id);
 
         email.setText(acc.getEmail());
@@ -69,12 +68,8 @@ public class AccountSettingsActivity extends AppCompatActivity {
                 acc.setAddress(address.getText().toString());
                 DBConnector.updateAcc(acc);
                 finish();
-            } else if (password.getText().toString().equals(confirmPassword.getText().toString()) && password.getText().toString().equals("")) {
-                acc.setAddress(address.getText().toString());
-                DBConnector.updateAcc(acc);
-                finish();
             } else {
-                Toast.makeText(getApplicationContext(), "Please Confirm your password", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.fill_form), Toast.LENGTH_SHORT).show();
             }
         });
         delete.setOnClickListener(v -> {

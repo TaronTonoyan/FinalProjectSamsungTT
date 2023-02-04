@@ -57,8 +57,10 @@ public class GalleryActivity extends AppCompatActivity {
                 //noinspection deprecation
                 startActivityForResult(intent, CART_ACTIVITY_REQUEST_CODE);
             });
+        } else if (id == -2){
+            actionBar.setTitle("Delete Product");
         } else {
-            actionBar.setTitle("Admin");
+            actionBar.setTitle("Update Product");
         }
         sort.setOnClickListener(v -> {
             Intent intent = new Intent(GalleryActivity.this, ProductCategoryActivity.class);

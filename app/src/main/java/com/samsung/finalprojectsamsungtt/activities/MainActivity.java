@@ -97,17 +97,21 @@ public class MainActivity extends AppCompatActivity {
         long id = sharedPref.getLong(getString(R.string.account), -1);
         if (id != -1) {
             acc = DBConnector.selectAcc(id);
-            login(acc.getEmail(), acc.getPassword());
+            getAccount(acc.getEmail(), acc.getPassword());
         }
     }
 
-    private void login(String email, String password) {
+    private void getAccount(String email, String password) {
         ArrayList<Account> arr = DBConnector.selectAllAccounts();
         for (int i = 0; i < arr.size(); i++) {
             if (email.equals(arr.get(i).getEmail()) && password.equals(arr.get(i).getPassword())) {
                 acc = arr.get(i);
             }
         }
+        login();
+    }
+
+    private void login() {
         if (remember) {
             editor.putLong(getString(R.string.account), acc.getId());
             editor.apply();
@@ -142,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                 String accEmail = data.getStringExtra(getString(R.string.email));
                 String accPassword = data.getStringExtra(getString(R.string.password));
                 remember = data.getBooleanExtra(getString(R.string.account), false);
-                login(accEmail, accPassword);
+                getAccount(accEmail, accPassword);
             } else {
                 finish();
             }

@@ -38,7 +38,7 @@
     <string name="product_image">Insert the URL of your Image</string>
     <string name="product_added">Your Product was added Successfully</string>
     <string name="login_text">LOGIN TO YOUR ACCOUNT</string>
-    <string name="register_text">REGISTER</string>
+    <string name="register_text">SIGN UP</string>
     <string name="add_console">Add a Gaming Console</string>
     <string name="add_accessory">Add an Accessory</string>
     <string name="add_game">Add a VideoGame</string>
@@ -51,7 +51,6 @@
     <string name="wishlist">wishlist</string>
     <string name="total">total</string>
     <string name="account_settings">Account Settings</string>
-    <string name="gallery_text">Gallery</string>
     <string name="add_to_cart">add to cart</string>
     <string name="added_to_cart">added to cart</string>
     <string name="add_to_wishlist">add to wishlist</string>
