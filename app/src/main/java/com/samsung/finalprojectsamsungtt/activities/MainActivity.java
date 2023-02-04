@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -14,15 +15,16 @@ import com.samsung.finalprojectsamsungtt.DBShop;
 import com.samsung.finalprojectsamsungtt.R;
 import com.samsung.finalprojectsamsungtt.models.Account;
 
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private DBShop DBConnector;
     private Account acc;
-    private ActionBar actionBar;
-    boolean remember;
+    private boolean remember;
     private SharedPreferences.Editor editor;
+    private TextView text;
 
     private final int LOGIN_ACTIVITY_RESULT_CODE = 1;
     private final int ADMIN_ACTIVITY_RESULT_CODE = 2;
@@ -38,7 +40,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        actionBar = getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setTitle("Menu");
+        text = findViewById(R.id.text);
         Button gallery = findViewById(R.id.gallery);
         Button cart = findViewById(R.id.cart);
         Button wishlist = findViewById(R.id.wishlist);
@@ -112,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(MainActivity.this, AdminActivity.class);
             startActivityForResult(i, ADMIN_ACTIVITY_RESULT_CODE);
         } else {
-            actionBar.setTitle(acc.getEmail());
+            text.setText(acc.getEmail());
         }
     }
 
