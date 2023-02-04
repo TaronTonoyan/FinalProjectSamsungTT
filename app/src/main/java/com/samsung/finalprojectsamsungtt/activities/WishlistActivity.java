@@ -25,8 +25,8 @@ public class WishlistActivity extends AppCompatActivity {
     private int sortCode;
     private ListView list;
 
-    private final int SORT_RESULT_CODE = 1;
-    private final int CART_ACTIVITY_RESULT_CODE = 2;
+    private final int SORT_REQUEST_CODE = 1;
+    private final int CART_ACTIVITY_REQUEST_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +50,14 @@ public class WishlistActivity extends AppCompatActivity {
         cart.setOnClickListener(v -> {
             Intent intent = new Intent(WishlistActivity.this, CartActivity.class);
             intent.putExtra(getString(R.string.cart), id);
-            startActivityForResult(intent, CART_ACTIVITY_RESULT_CODE);
+            //noinspection deprecation
+            startActivityForResult(intent, CART_ACTIVITY_REQUEST_CODE);
         });
         sort.setOnClickListener(v -> {
             Intent intent = new Intent(WishlistActivity.this, ProductCategoryActivity.class);
             intent.putExtra(getString(R.string.sort), true);
-            startActivityForResult(intent, SORT_RESULT_CODE);
+            //noinspection deprecation
+            startActivityForResult(intent, SORT_REQUEST_CODE);
         });
     }
 
@@ -108,12 +110,12 @@ public class WishlistActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == SORT_RESULT_CODE){
+        if (requestCode == SORT_REQUEST_CODE){
             if (resultCode == RESULT_OK) {
                 sortCode = data.getIntExtra(getString(R.string.category), 0);
             }
         }
-        if (requestCode == CART_ACTIVITY_RESULT_CODE){
+        if (requestCode == CART_ACTIVITY_REQUEST_CODE){
             if (resultCode == RESULT_OK) {
                 Toast.makeText(getApplicationContext(), getString(R.string.order_delivered), Toast.LENGTH_SHORT).show();
             }

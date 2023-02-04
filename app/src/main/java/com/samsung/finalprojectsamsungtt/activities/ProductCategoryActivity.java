@@ -14,7 +14,7 @@ import com.samsung.finalprojectsamsungtt.R;
 
 public class ProductCategoryActivity extends AppCompatActivity {
 
-    private final int ADD_PRODUCT_ACTIVITY_RESULT_CODE = 1;
+    private final int ADD_PRODUCT_ACTIVITY_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,17 +92,20 @@ public class ProductCategoryActivity extends AppCompatActivity {
             addConsole.setOnClickListener(v -> {
                 Intent intent = new Intent(ProductCategoryActivity.this, AddProductActivity.class);
                 intent.putExtra(getString(R.string.category), getString(R.string.console));
-                startActivityForResult(intent, ADD_PRODUCT_ACTIVITY_RESULT_CODE);
+                //noinspection deprecation
+                startActivityForResult(intent, ADD_PRODUCT_ACTIVITY_REQUEST_CODE);
             });
             addAccessory.setOnClickListener(v -> {
                 Intent intent = new Intent(ProductCategoryActivity.this, AddProductActivity.class);
                 intent.putExtra(getString(R.string.category), getString(R.string.accessory));
-                startActivityForResult(intent, ADD_PRODUCT_ACTIVITY_RESULT_CODE);
+                //noinspection deprecation
+                startActivityForResult(intent, ADD_PRODUCT_ACTIVITY_REQUEST_CODE);
             });
             addGame.setOnClickListener(v -> {
                 Intent intent = new Intent(ProductCategoryActivity.this, AddProductActivity.class);
                 intent.putExtra(getString(R.string.category), getString(R.string.game));
-                startActivityForResult(intent, ADD_PRODUCT_ACTIVITY_RESULT_CODE);
+                //noinspection deprecation
+                startActivityForResult(intent, ADD_PRODUCT_ACTIVITY_REQUEST_CODE);
             });
         }
     }
@@ -110,7 +113,7 @@ public class ProductCategoryActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ADD_PRODUCT_ACTIVITY_RESULT_CODE){
+        if (requestCode == ADD_PRODUCT_ACTIVITY_REQUEST_CODE){
             if (resultCode == RESULT_OK) {
                 Intent i = new Intent();
                 setResult(RESULT_OK, i);

@@ -233,12 +233,12 @@ public class DBShop {
         cursor.moveToFirst();
         if (!cursor.isAfterLast()) {
             do {
-                long id = cursor.getLong(NUM_COLUMN_ID);
+                cursor.getLong(NUM_COLUMN_ID);
                 long owner = cursor.getLong(NUM_COLUMN_HISTORY_OWNER);
                 float price = cursor.getFloat(NUM_COLUMN_HISTORY_PRICE);
                 String address = cursor.getString(NUM_COLUMN_HISTORY_ADDRESS);
                 String orders = cursor.getString(NUM_COLUMN_HISTORY_ORDERS);
-                arr.add(new History(id, owner, price, address, orders));
+                arr.add(new History(owner, price, address, orders));
             } while (cursor.moveToNext());
         }
         return arr;

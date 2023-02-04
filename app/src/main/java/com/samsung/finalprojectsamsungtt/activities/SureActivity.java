@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class SureActivity extends AppCompatActivity {
 
-    DBShop DBConnector;
+    private DBShop DBConnector;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

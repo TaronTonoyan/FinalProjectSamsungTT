@@ -27,7 +27,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
     private EditText address;
     private CheckBox showPassword;
 
-    private final int DELETE_ACTIVITY_RESULT_CODE = 1;
+    private final int DELETE_ACTIVITY_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,14 +81,15 @@ public class AccountSettingsActivity extends AppCompatActivity {
             Intent intent = new Intent(AccountSettingsActivity.this, SureActivity.class);
             intent.putExtra(getString(R.string.yes), acc.getId());
             intent.putExtra(getString(R.string.no), 0);
-            startActivityForResult(intent, DELETE_ACTIVITY_RESULT_CODE);
+            //noinspection deprecation
+            startActivityForResult(intent, DELETE_ACTIVITY_REQUEST_CODE);
         });
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == DELETE_ACTIVITY_RESULT_CODE) {
+        if (requestCode == DELETE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 setResult(RESULT_OK);
                 finish();

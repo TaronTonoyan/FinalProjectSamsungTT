@@ -13,8 +13,8 @@ import com.samsung.finalprojectsamsungtt.R;
 
 public class AdminActivity extends AppCompatActivity {
 
-    private final int ADD_PRODUCT_RESULT_CODE = 1;
-    private final int LOG_OUT_CONFIRMATION_RESULT_CODE = 2;
+    private final int ADD_PRODUCT_REQUEST_CODE = 1;
+    private final int LOG_OUT_CONFIRMATION_REQUEST_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,8 @@ public class AdminActivity extends AppCompatActivity {
         });
         addProduct.setOnClickListener(v -> {
             Intent intent = new Intent(AdminActivity.this, ProductCategoryActivity.class);
-            startActivityForResult(intent, ADD_PRODUCT_RESULT_CODE);
+            //noinspection deprecation
+            startActivityForResult(intent, ADD_PRODUCT_REQUEST_CODE);
         });
         updateProduct.setOnClickListener(v -> {
             Intent intent = new Intent(AdminActivity.this, GalleryActivity.class);
@@ -62,19 +63,20 @@ public class AdminActivity extends AppCompatActivity {
             Intent intent = new Intent(AdminActivity.this, SureActivity.class);
             long a = 0;
             intent.putExtra(getString(R.string.yes), a);
-            startActivityForResult(intent, LOG_OUT_CONFIRMATION_RESULT_CODE);
+            //noinspection deprecation
+            startActivityForResult(intent, LOG_OUT_CONFIRMATION_REQUEST_CODE);
         });
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ADD_PRODUCT_RESULT_CODE){
+        if (requestCode == ADD_PRODUCT_REQUEST_CODE){
             if (resultCode == RESULT_OK) {
                 Toast.makeText(getApplicationContext(), getString(R.string.product_added), Toast.LENGTH_SHORT).show();
             }
         }
-        if (requestCode == LOG_OUT_CONFIRMATION_RESULT_CODE){
+        if (requestCode == LOG_OUT_CONFIRMATION_REQUEST_CODE){
             if (resultCode == RESULT_OK) {
                 Intent intent = new Intent();
                 setResult(RESULT_OK, intent);

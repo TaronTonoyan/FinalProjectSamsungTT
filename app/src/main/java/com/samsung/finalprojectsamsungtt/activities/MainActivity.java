@@ -26,11 +26,11 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences.Editor editor;
     private TextView text;
 
-    private final int LOGIN_ACTIVITY_RESULT_CODE = 1;
-    private final int ADMIN_ACTIVITY_RESULT_CODE = 2;
-    private final int CART_ACTIVITY_RESULT_CODE = 3;
-    private final int ACCOUNT_SETTINGS_ACTIVITY_RESULT_CODE = 4;
-    private final int LOG_OUT_CONFIRMATION_RESULT_CODE = 5;
+    private final int LOGIN_ACTIVITY_REQUEST_CODE = 1;
+    private final int ADMIN_ACTIVITY_REQUEST_CODE = 2;
+    private final int CART_ACTIVITY_REQUEST_CODE = 3;
+    private final int ACCOUNT_SETTINGS_ACTIVITY_REQUEST_CODE = 4;
+    private final int LOG_OUT_CONFIRMATION_REQUEST_CODE = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
         cart.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, CartActivity.class);
             intent.putExtra(getString(R.string.cart), acc.getId());
-            startActivityForResult(intent, CART_ACTIVITY_RESULT_CODE);
+            //noinspection deprecation
+            startActivityForResult(intent, CART_ACTIVITY_REQUEST_CODE);
         });
         wishlist.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, WishlistActivity.class);
@@ -74,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
         accountSettings.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, AccountSettingsActivity.class);
             intent.putExtra(getString(R.string.account), acc.getId());
-            startActivityForResult(intent, ACCOUNT_SETTINGS_ACTIVITY_RESULT_CODE);
+            //noinspection deprecation
+            startActivityForResult(intent, ACCOUNT_SETTINGS_ACTIVITY_REQUEST_CODE);
         });
         history.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
@@ -84,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
         logOut.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SureActivity.class);
             intent.putExtra(getString(R.string.yes), acc.getId());
-            startActivityForResult(intent, LOG_OUT_CONFIRMATION_RESULT_CODE);
+            //noinspection deprecation
+            startActivityForResult(intent, LOG_OUT_CONFIRMATION_REQUEST_CODE);
         });
     }
 
@@ -112,10 +115,12 @@ public class MainActivity extends AppCompatActivity {
         if (acc.getEmail().equals(getString(R.string.root_email))) {
             Intent i = new Intent(MainActivity.this, AdminActivity.class);
             i.putExtra(getString(R.string.is_root), true);
-            startActivityForResult(i, ADMIN_ACTIVITY_RESULT_CODE);
+            //noinspection deprecation
+            startActivityForResult(i, ADMIN_ACTIVITY_REQUEST_CODE);
         } else if (acc.getIsAdmin() == 1){
             Intent i = new Intent(MainActivity.this, AdminActivity.class);
-            startActivityForResult(i, ADMIN_ACTIVITY_RESULT_CODE);
+            //noinspection deprecation
+            startActivityForResult(i, ADMIN_ACTIVITY_REQUEST_CODE);
         } else {
             text.setText(acc.getEmail());
         }
@@ -125,13 +130,14 @@ public class MainActivity extends AppCompatActivity {
         editor.putLong(getString(R.string.account), -1);
         editor.apply();
         Intent i = new Intent(MainActivity.this, LoginActivity.class);
-        startActivityForResult(i, LOGIN_ACTIVITY_RESULT_CODE);
+        //noinspection deprecation
+        startActivityForResult(i, LOGIN_ACTIVITY_REQUEST_CODE);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == LOGIN_ACTIVITY_RESULT_CODE){
+        if (requestCode == LOGIN_ACTIVITY_REQUEST_CODE){
             if (resultCode == RESULT_OK) {
                 String accEmail = data.getStringExtra(getString(R.string.email));
                 String accPassword = data.getStringExtra(getString(R.string.password));
@@ -141,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         }
-        if (requestCode == ADMIN_ACTIVITY_RESULT_CODE){
+        if (requestCode == ADMIN_ACTIVITY_REQUEST_CODE){
             if (resultCode == RESULT_OK) {
                 acc = null;
                 goToLoginPage();
@@ -149,17 +155,17 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         }
-        if (requestCode == CART_ACTIVITY_RESULT_CODE){
+        if (requestCode == CART_ACTIVITY_REQUEST_CODE){
             if (resultCode == RESULT_OK) {
                 Toast.makeText(getApplicationContext(), getString(R.string.order_delivered), Toast.LENGTH_SHORT).show();
             }
         }
-        if (requestCode == ACCOUNT_SETTINGS_ACTIVITY_RESULT_CODE){
+        if (requestCode == ACCOUNT_SETTINGS_ACTIVITY_REQUEST_CODE){
             if (resultCode == RESULT_OK) {
                 goToLoginPage();
             }
         }
-        if (requestCode == LOG_OUT_CONFIRMATION_RESULT_CODE){
+        if (requestCode == LOG_OUT_CONFIRMATION_REQUEST_CODE){
             if (resultCode == RESULT_OK) {
                 goToLoginPage();
             }

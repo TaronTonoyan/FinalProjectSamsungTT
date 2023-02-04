@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private CheckBox rememberMe;
     private Account acc = null;
 
-    private final int REGISTER_ACTIVITY_RESULT_CODE = 1;
+    private final int REGISTER_ACTIVITY_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,8 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(view -> login(email.getText().toString(), password.getText().toString()));
         register.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivityForResult(intent, REGISTER_ACTIVITY_RESULT_CODE);
+            //noinspection deprecation
+            startActivityForResult(intent, REGISTER_ACTIVITY_REQUEST_CODE);
         });
     }
 
@@ -105,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REGISTER_ACTIVITY_RESULT_CODE){
+        if (requestCode == REGISTER_ACTIVITY_REQUEST_CODE){
             if (resultCode == RESULT_OK) {
                 String accEmail = data.getStringExtra(getString(R.string.email));
                 String accPassword = data.getStringExtra(getString(R.string.password));
