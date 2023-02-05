@@ -2,7 +2,6 @@ package com.samsung.finalprojectsamsungtt.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -22,7 +21,6 @@ public class LoginActivity extends AppCompatActivity {
     private DBShop DBConnector;
     private EditText email;
     private EditText password;
-    private CheckBox showPassword;
     private CheckBox rememberMe;
     private Account acc = null;
 
@@ -42,19 +40,11 @@ public class LoginActivity extends AppCompatActivity {
         actionBar.setTitle("Login");
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-        showPassword = findViewById(R.id.showPassword);
         rememberMe = findViewById(R.id.rememberMe);
         Button login = findViewById(R.id.login);
         Button register = findViewById(R.id.register);
         DBConnector = new DBShop(this);
 
-        showPassword.setOnClickListener(v -> {
-            if (showPassword.isChecked()) {
-                password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-            } else {
-                password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            }
-        });
         login.setOnClickListener(view -> login(email.getText().toString(), password.getText().toString()));
         register.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
