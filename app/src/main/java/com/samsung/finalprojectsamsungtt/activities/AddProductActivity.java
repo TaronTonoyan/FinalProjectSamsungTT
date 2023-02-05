@@ -53,7 +53,6 @@ public class AddProductActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("Admin");
         name = findViewById(R.id.name);
         price = findViewById(R.id.price);
         description = findViewById(R.id.description);
@@ -68,6 +67,7 @@ public class AddProductActivity extends AppCompatActivity {
         long id = getIntent().getLongExtra(getString(R.string.product), -1);
 
         if (id == -1) {
+            actionBar.setTitle("Add a Product");
             addCategory.setVisibility(View.GONE);
             save.setOnClickListener(v -> {
                 try {
@@ -85,6 +85,7 @@ public class AddProductActivity extends AppCompatActivity {
                 }
             });
         } else {
+            actionBar.setTitle("Update your Product");
             addCategory.setVisibility(View.VISIBLE);
             product = DBConnector.selectProduct(id);
             name.setText(product.getName());
