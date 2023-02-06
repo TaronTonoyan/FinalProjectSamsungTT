@@ -28,7 +28,7 @@ public class SureActivity extends AppCompatActivity {
     private void initViews() {
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.setTitle("Are You Sure?");
+        actionBar.setTitle("Confirmation");
         TextView text = findViewById(R.id.sureText);
         Button yes = findViewById(R.id.buttonYes);
         Button no = findViewById(R.id.buttonNo);
