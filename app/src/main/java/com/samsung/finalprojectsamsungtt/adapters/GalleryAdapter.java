@@ -109,7 +109,7 @@ public class GalleryAdapter extends ArrayAdapter<Product> {
             filteredList.addAll(Arrays.asList(originalList));
         } else {
             for (Product product : originalList) {
-                if (product.getName().toLowerCase().contains(searchText.toLowerCase())) {
+                if (product.getName().toLowerCase().contains(searchText.toLowerCase()) || product.getDescription().toLowerCase().contains(searchText.toLowerCase()) || product.getCategory().toLowerCase().contains(searchText.toLowerCase())) {
                     filteredList.add(product);
                 }
             }
