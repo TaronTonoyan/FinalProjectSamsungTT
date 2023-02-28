@@ -2,10 +2,12 @@ package com.samsung.finalprojectsamsungtt.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import androidx.appcompat.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,6 +25,7 @@ public class GalleryActivity extends AppCompatActivity {
 
     private DBShop DBConnector;
     private ListView list;
+    private GalleryAdapter adapter;
     private int sortCode;
     private long id;
 
@@ -73,7 +76,7 @@ public class GalleryActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        GalleryAdapter adapter = new GalleryAdapter(this, getProducts(), id);
+        adapter = new GalleryAdapter(this, getProducts(), id);
         list.setAdapter(adapter);
     }
 
@@ -132,6 +135,32 @@ public class GalleryActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options_menu, menu);
+
+        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setQueryHint(getString(R.string.search_hint));
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                adapter.filter(s);
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.filter(s);
+
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
     }
 
 }

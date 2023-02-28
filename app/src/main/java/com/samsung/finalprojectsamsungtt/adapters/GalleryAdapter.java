@@ -17,24 +17,31 @@ import androidx.annotation.NonNull;
 
 import com.samsung.finalprojectsamsungtt.R;
 import com.samsung.finalprojectsamsungtt.activities.AddProductActivity;
-import com.samsung.finalprojectsamsungtt.activities.SureActivity;
 import com.samsung.finalprojectsamsungtt.activities.ProductActivity;
+import com.samsung.finalprojectsamsungtt.activities.SureActivity;
 import com.samsung.finalprojectsamsungtt.models.Product;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class GalleryAdapter extends ArrayAdapter<Product> {
 
     private Bitmap bitmap;
     private URL url;
     private final long id;
+    private final List<Product> filteredList;
+    private final Product[] originalList;
 
     public GalleryAdapter(@NonNull Context context, Product[] arr, long id) {
         super(context, R.layout.gallery_item, arr);
         this.id = id;
+        this.originalList = arr;
+        this.filteredList = new ArrayList<>(Arrays.asList(arr));
     }
 
     @SuppressLint({"SetTextI18n", "InflateParams"})
@@ -86,6 +93,28 @@ public class GalleryAdapter extends ArrayAdapter<Product> {
         });
 
         return convertView;
+    }
+
+    public int getCount() {
+        return filteredList.size();
+    }
+
+    public Product getItem(int position) {
+        return filteredList.get(position);
+    }
+
+    public void filter(String searchText) {
+        filteredList.clear();
+        if (searchText == null || searchText.isEmpty()) {
+            filteredList.addAll(Arrays.asList(originalList));
+        } else {
+            for (Product product : originalList) {
+                if (product.getName().toLowerCase().contains(searchText.toLowerCase())) {
+                    filteredList.add(product);
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 
     class ImageThread extends Thread{
