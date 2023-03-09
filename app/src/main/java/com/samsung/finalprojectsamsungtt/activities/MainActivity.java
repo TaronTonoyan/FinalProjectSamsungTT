@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -51,39 +52,46 @@ public class MainActivity extends AppCompatActivity {
         Button history = findViewById(R.id.history);
         Button logOut = findViewById(R.id.logOut);
         DBConnector = new DBShop(this);
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.click);
         rememberLogin();
         if (acc == null) {
             goToLoginPage();
         }
 
         gallery.setOnClickListener(v -> {
+            mediaPlayer.start();
             Intent intent = new Intent(MainActivity.this, GalleryActivity.class);
             intent.putExtra(getString(R.string.account), acc.getId());
             startActivity(intent);
         });
         cart.setOnClickListener(v -> {
+            mediaPlayer.start();
             Intent intent = new Intent(MainActivity.this, CartActivity.class);
             intent.putExtra(getString(R.string.cart), acc.getId());
             //noinspection deprecation
             startActivityForResult(intent, CART_ACTIVITY_REQUEST_CODE);
         });
         wishlist.setOnClickListener(v -> {
+            mediaPlayer.start();
             Intent intent = new Intent(MainActivity.this, WishlistActivity.class);
             intent.putExtra(getString(R.string.wishlist), acc.getId());
             startActivity(intent);
         });
         accountSettings.setOnClickListener(v -> {
+            mediaPlayer.start();
             Intent intent = new Intent(MainActivity.this, AccountSettingsActivity.class);
             intent.putExtra(getString(R.string.account), acc.getId());
             //noinspection deprecation
             startActivityForResult(intent, ACCOUNT_SETTINGS_ACTIVITY_REQUEST_CODE);
         });
         history.setOnClickListener(v -> {
+            mediaPlayer.start();
             Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
             intent.putExtra(getString(R.string.account), acc.getId());
             startActivity(intent);
         });
         logOut.setOnClickListener(v -> {
+            mediaPlayer.start();
             Intent intent = new Intent(MainActivity.this, SureActivity.class);
             intent.putExtra(getString(R.string.yes), acc.getId());
             //noinspection deprecation

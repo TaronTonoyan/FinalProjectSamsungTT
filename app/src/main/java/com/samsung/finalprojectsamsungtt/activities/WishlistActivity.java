@@ -1,6 +1,7 @@
 package com.samsung.finalprojectsamsungtt.activities;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -42,18 +43,21 @@ public class WishlistActivity extends AppCompatActivity {
         list = findViewById(R.id.listView);
         Button cart = findViewById(R.id.cart);
         Button sort = findViewById(R.id.sort);
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.click);
         id = getIntent().getLongExtra(getString(R.string.wishlist), -1);
         DBConnector = new DBShop(this);
         actionBar.setTitle("Wishlist");
         sortCode = 0;
 
         cart.setOnClickListener(v -> {
+            mediaPlayer.start();
             Intent intent = new Intent(WishlistActivity.this, CartActivity.class);
             intent.putExtra(getString(R.string.cart), id);
             //noinspection deprecation
             startActivityForResult(intent, CART_ACTIVITY_REQUEST_CODE);
         });
         sort.setOnClickListener(v -> {
+            mediaPlayer.start();
             Intent intent = new Intent(WishlistActivity.this, ProductCategoryActivity.class);
             intent.putExtra(getString(R.string.sort), true);
             //noinspection deprecation

@@ -1,6 +1,7 @@
 package com.samsung.finalprojectsamsungtt.activities;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -47,6 +48,7 @@ public class GalleryActivity extends AppCompatActivity {
         Button cart = findViewById(R.id.cart);
         Button sort = findViewById(R.id.sort);
         DBConnector = new DBShop(this);
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.click);
         id = getIntent().getLongExtra(getString(R.string.account), -1);
         sortCode = 0;
         cart.setVisibility(View.GONE);
@@ -66,6 +68,7 @@ public class GalleryActivity extends AppCompatActivity {
             actionBar.setTitle("Update Product");
         }
         sort.setOnClickListener(v -> {
+            mediaPlayer.start();
             Intent intent = new Intent(GalleryActivity.this, ProductCategoryActivity.class);
             intent.putExtra(getString(R.string.sort), true);
             //noinspection deprecation

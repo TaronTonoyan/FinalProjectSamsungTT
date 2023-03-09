@@ -2,6 +2,7 @@ package com.samsung.finalprojectsamsungtt.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,12 @@ import com.samsung.finalprojectsamsungtt.models.Account;
 public class AccountAdapter extends ArrayAdapter<Account> {
 
     private final DBShop DBConnector;
+    private final MediaPlayer mediaPlayer;
 
     public AccountAdapter(@NonNull Context context, Account[] arr) {
         super(context, R.layout.account_item, arr);
         DBConnector = new DBShop(context);
+        mediaPlayer = MediaPlayer.create(context, R.raw.click);
     }
 
     @SuppressLint("InflateParams")
@@ -38,6 +41,7 @@ public class AccountAdapter extends ArrayAdapter<Account> {
 
         isAdmin.setChecked(acc.getIsAdmin() == 1);
         isAdmin.setOnClickListener(v -> {
+            mediaPlayer.start();
             acc.setIsAdmin(isAdmin.isChecked());
             DBConnector.updateAcc(acc);
         });

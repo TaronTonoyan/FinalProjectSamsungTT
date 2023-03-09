@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,10 +32,12 @@ public class CartAdapter extends ArrayAdapter<Order> {
     private final DBShop DBConnector;
     private Bitmap bitmap;
     private URL url;
+    private final MediaPlayer mediaPlayer;
 
     public CartAdapter(@NonNull Context context, Order[] arr) {
         super(context, R.layout.cart_item, arr);
         DBConnector = new DBShop(context);
+        mediaPlayer = MediaPlayer.create(context, R.raw.click);
     }
 
     @SuppressLint({"SetTextI18n", "InflateParams"})
@@ -65,11 +68,13 @@ public class CartAdapter extends ArrayAdapter<Order> {
         }
 
         quantity.setOnClickListener(v -> {
+            mediaPlayer.start();
             order.setQuantity(Integer.parseInt(quantity.getText().toString()));
             quantity.setText(order.getQuantity() + "");
         });
 
         save.setOnClickListener(v -> {
+            mediaPlayer.start();
             Intent intent = new Intent(getContext(), SureActivity.class);
             intent.putExtra(getContext().getString(R.string.yes), order.getId());
             intent.putExtra(getContext().getString(R.string.no), 3);
@@ -80,6 +85,7 @@ public class CartAdapter extends ArrayAdapter<Order> {
         });
 
         removeFromCart.setOnClickListener(v -> {
+            mediaPlayer.start();
             Intent intent = new Intent(getContext(), SureActivity.class);
             intent.putExtra(getContext().getString(R.string.yes), order.getId());
             intent.putExtra(getContext().getString(R.string.no), 2);

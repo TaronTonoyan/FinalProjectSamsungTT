@@ -1,6 +1,7 @@
 package com.samsung.finalprojectsamsungtt.activities;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +33,7 @@ public class AdminActivity extends AppCompatActivity {
         Button updateProduct = findViewById(R.id.updateProduct);
         Button deleteProduct = findViewById(R.id.deleteProduct);
         Button logOut = findViewById(R.id.logout);
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.click);
         boolean isRoot = getIntent().getBooleanExtra(getString(R.string.is_root), false);
 
         Toast.makeText(getApplicationContext(), getString(R.string.admin_login), Toast.LENGTH_SHORT).show();
@@ -41,25 +43,30 @@ public class AdminActivity extends AppCompatActivity {
         }
 
         addAdmins.setOnClickListener(v -> {
+            mediaPlayer.start();
             Intent intent = new Intent(AdminActivity.this, AddAdminsActivity.class);
             startActivity(intent);
         });
         addProduct.setOnClickListener(v -> {
+            mediaPlayer.start();
             Intent intent = new Intent(AdminActivity.this, ProductCategoryActivity.class);
             //noinspection deprecation
             startActivityForResult(intent, ADD_PRODUCT_REQUEST_CODE);
         });
         updateProduct.setOnClickListener(v -> {
+            mediaPlayer.start();
             Intent intent = new Intent(AdminActivity.this, GalleryActivity.class);
             startActivity(intent);
         });
         deleteProduct.setOnClickListener(v -> {
+            mediaPlayer.start();
             long id = -2;
             Intent intent = new Intent(AdminActivity.this, GalleryActivity.class);
             intent.putExtra(getString(R.string.account), id);
             startActivity(intent);
         });
         logOut.setOnClickListener(v -> {
+            mediaPlayer.start();
             Intent intent = new Intent(AdminActivity.this, SureActivity.class);
             long a = 0;
             intent.putExtra(getString(R.string.yes), a);

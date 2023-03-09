@@ -1,6 +1,7 @@
 package com.samsung.finalprojectsamsungtt.activities;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -44,8 +45,12 @@ public class LoginActivity extends AppCompatActivity {
         Button login = findViewById(R.id.login);
         Button register = findViewById(R.id.register);
         DBConnector = new DBShop(this);
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.click);
 
-        login.setOnClickListener(view -> login(email.getText().toString(), password.getText().toString()));
+        login.setOnClickListener(view -> {
+            mediaPlayer.start();
+            login(email.getText().toString(), password.getText().toString());
+        });
         register.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             //noinspection deprecation

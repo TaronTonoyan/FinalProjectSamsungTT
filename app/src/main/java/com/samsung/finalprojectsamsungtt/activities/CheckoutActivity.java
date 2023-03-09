@@ -1,5 +1,6 @@
 package com.samsung.finalprojectsamsungtt.activities;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -40,12 +41,14 @@ public class CheckoutActivity extends AppCompatActivity {
         address = findViewById(R.id.confirmAddress);
         Button confirm = findViewById(R.id.checkout);
         DBConnector = new DBShop(this);
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.click);
         id = getIntent().getLongExtra(getString(R.string.account), -1);
         Account acc = DBConnector.selectAcc(id);
         total = getIntent().getFloatExtra(getString(R.string.total_price), 0);
         String orders = getIntent().getStringExtra(getString(R.string.order));
 
         confirm.setOnClickListener(v -> {
+            mediaPlayer.start();
             if (address.getText().toString().equals("")) {
                 Toast.makeText(getApplicationContext(), "Please write an address for us", Toast.LENGTH_SHORT).show();
             } else {
