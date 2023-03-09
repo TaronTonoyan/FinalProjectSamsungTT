@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,10 +33,12 @@ public class WishlistAdapter extends ArrayAdapter<Order> {
     private final DBShop DBConnector;
     private Bitmap bitmap;
     private URL url;
+    private final MediaPlayer mediaPlayer;
 
     public WishlistAdapter(@NonNull Context context, Order[] arr) {
         super(context, R.layout.wishlist_item, arr);
         DBConnector = new DBShop(context);
+        mediaPlayer = MediaPlayer.create(context, R.raw.click);
     }
 
     @SuppressLint({"SetTextI18n", "InflateParams"})
@@ -64,6 +67,7 @@ public class WishlistAdapter extends ArrayAdapter<Order> {
         }
 
         removeFromWishlist.setOnClickListener(v -> {
+            mediaPlayer.start();
             Intent intent = new Intent(getContext(), SureActivity.class);
             intent.putExtra(getContext().getString(R.string.yes), order.getId());
             intent.putExtra(getContext().getString(R.string.no), 2);
@@ -73,6 +77,7 @@ public class WishlistAdapter extends ArrayAdapter<Order> {
             addToCart.setText(getContext().getString(R.string.added_to_cart));
         } else {
             addToCart.setOnClickListener(v -> {
+                mediaPlayer.start();
                 Intent intent = new Intent(getContext(), SureActivity.class);
                 intent.putExtra(getContext().getString(R.string.account), order.getOwner());
                 intent.putExtra(getContext().getString(R.string.product), order.getProduct());

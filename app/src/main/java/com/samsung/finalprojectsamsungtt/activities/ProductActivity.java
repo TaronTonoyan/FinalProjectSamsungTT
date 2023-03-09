@@ -3,6 +3,7 @@ package com.samsung.finalprojectsamsungtt.activities;
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -58,6 +59,7 @@ public class ProductActivity extends AppCompatActivity {
         cart = findViewById(R.id.addToCart);
         wishlist = findViewById(R.id.addToWishlist);
         DBConnector = new DBShop(this);
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.click);
         accId = getIntent().getLongExtra(getString(R.string.account), -1);
         productId = getIntent().getLongExtra(getString(R.string.product), -1);
         Product product = DBConnector.selectProduct(productId);
@@ -90,6 +92,7 @@ public class ProductActivity extends AppCompatActivity {
         }
 
         cart.setOnClickListener(v -> {
+            mediaPlayer.start();
             if (existsInCart()) {
                 cart.setText(getString(R.string.add_to_cart));
                 DBConnector.deleteOrder(cartId);
@@ -99,6 +102,7 @@ public class ProductActivity extends AppCompatActivity {
             }
         });
         wishlist.setOnClickListener(v -> {
+            mediaPlayer.start();
             if (existsInWishlist()) {
                 wishlist.setText(getString(R.string.add_to_wishlist));
                 DBConnector.deleteOrder(wishlistId);

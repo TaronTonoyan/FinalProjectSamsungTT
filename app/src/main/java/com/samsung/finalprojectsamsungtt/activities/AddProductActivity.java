@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -64,6 +65,7 @@ public class AddProductActivity extends AppCompatActivity {
         DBConnector = new DBShop(this);
         category = getIntent().getStringExtra(getString(R.string.category));
         addCategory.setText(category);
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.click);
         long id = getIntent().getLongExtra(getString(R.string.product), -1);
 
         if (id == -1) {
@@ -113,6 +115,7 @@ public class AddProductActivity extends AppCompatActivity {
         }
 
         view.setOnClickListener(v -> {
+            mediaPlayer.start();
             try {
                 url = new URL(imageLink.getText().toString());
                 ImageThread thread = new ImageThread();

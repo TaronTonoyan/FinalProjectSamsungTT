@@ -2,6 +2,7 @@ package com.samsung.finalprojectsamsungtt.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -49,11 +50,13 @@ public class CartActivity extends AppCompatActivity {
         Button sort = findViewById(R.id.sort);
         Button order = findViewById(R.id.order);
         DBConnector = new DBShop(this);
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.click);
         id = getIntent().getLongExtra(getString(R.string.cart), -1);
         actionBar.setTitle("Cart");
         sortCode = 0;
 
         order.setOnClickListener(v -> {
+            mediaPlayer.start();
             if (getTotalPrice() > 0) {
                 Intent intent = new Intent(CartActivity.this, CheckoutActivity.class);
                 intent.putExtra(getString(R.string.account), id);
@@ -65,6 +68,7 @@ public class CartActivity extends AppCompatActivity {
             }
         });
         sort.setOnClickListener(v -> {
+            mediaPlayer.start();
             Intent intent = new Intent(CartActivity.this, ProductCategoryActivity.class);
             intent.putExtra(getString(R.string.sort), true);
             startActivityForResult(intent, SORT_REQUEST_CODE);

@@ -1,6 +1,7 @@
 package com.samsung.finalprojectsamsungtt.activities;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -47,11 +48,13 @@ public class AccountSettingsActivity extends AppCompatActivity {
         DBConnector = new DBShop(this);
         long id = getIntent().getLongExtra(getString(R.string.account), -1);
         Account acc = DBConnector.selectAcc(id);
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.click);
 
         email.setText(acc.getEmail());
         address.setText(acc.getAddress());
 
         save.setOnClickListener(v -> {
+            mediaPlayer.start();
             if (password.getText().toString().equals(confirmPassword.getText().toString()) && !password.getText().toString().equals("")) {
                 acc.setPassword(password.getText().toString());
                 acc.setAddress(address.getText().toString());
@@ -62,6 +65,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
             }
         });
         delete.setOnClickListener(v -> {
+            mediaPlayer.start();
             Intent intent = new Intent(AccountSettingsActivity.this, SureActivity.class);
             intent.putExtra(getString(R.string.yes), acc.getId());
             intent.putExtra(getString(R.string.no), 0);

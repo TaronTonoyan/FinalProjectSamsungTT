@@ -1,6 +1,7 @@
 package com.samsung.finalprojectsamsungtt.activities;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +33,7 @@ public class ProductCategoryActivity extends AppCompatActivity {
         Button addAccessory = findViewById(R.id.addAccessory);
         Button addGame = findViewById(R.id.addGame);
         Button allCategories = findViewById(R.id.allCategories);
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.click);
         boolean isSort = getIntent().getBooleanExtra(getString(R.string.sort), false);
         boolean isUpdate = getIntent().getBooleanExtra(getString(R.string.category), false);
 
@@ -41,24 +43,28 @@ public class ProductCategoryActivity extends AppCompatActivity {
             addAccessory.setText(getString(R.string.accessory));
             addGame.setText(getString(R.string.game));
             addConsole.setOnClickListener(v -> {
+                mediaPlayer.start();
                 Intent intent = new Intent();
                 intent.putExtra(getString(R.string.category), 1);
                 setResult(RESULT_OK, intent);
                 finish();
             });
             addAccessory.setOnClickListener(v -> {
+                mediaPlayer.start();
                 Intent intent = new Intent();
                 intent.putExtra(getString(R.string.category), 2);
                 setResult(RESULT_OK, intent);
                 finish();
             });
             addGame.setOnClickListener(v -> {
+                mediaPlayer.start();
                 Intent intent = new Intent();
                 intent.putExtra(getString(R.string.category), 3);
                 setResult(RESULT_OK, intent);
                 finish();
             });
             allCategories.setOnClickListener(v -> {
+                mediaPlayer.start();
                 Intent intent = new Intent();
                 intent.putExtra(getString(R.string.category), 0);
                 setResult(RESULT_OK, intent);
@@ -70,18 +76,21 @@ public class ProductCategoryActivity extends AppCompatActivity {
             addAccessory.setText(getString(R.string.accessory));
             addGame.setText(getString(R.string.game));
             addConsole.setOnClickListener(v -> {
+                mediaPlayer.start();
                 Intent intent = new Intent();
                 intent.putExtra(getString(R.string.add_products_category), getString(R.string.console));
                 setResult(RESULT_OK, intent);
                 finish();
             });
             addAccessory.setOnClickListener(v -> {
+                mediaPlayer.start();
                 Intent intent = new Intent();
                 intent.putExtra(getString(R.string.add_products_category), getString(R.string.accessory));
                 setResult(RESULT_OK, intent);
                 finish();
             });
             addGame.setOnClickListener(v -> {
+                mediaPlayer.start();
                 Intent intent = new Intent();
                 intent.putExtra(getString(R.string.add_products_category), getString(R.string.game));
                 setResult(RESULT_OK, intent);
@@ -90,18 +99,21 @@ public class ProductCategoryActivity extends AppCompatActivity {
         } else {
             allCategories.setVisibility(View.GONE);
             addConsole.setOnClickListener(v -> {
+                mediaPlayer.start();
                 Intent intent = new Intent(ProductCategoryActivity.this, AddProductActivity.class);
                 intent.putExtra(getString(R.string.category), getString(R.string.console));
                 //noinspection deprecation
                 startActivityForResult(intent, ADD_PRODUCT_ACTIVITY_REQUEST_CODE);
             });
             addAccessory.setOnClickListener(v -> {
+                mediaPlayer.start();
                 Intent intent = new Intent(ProductCategoryActivity.this, AddProductActivity.class);
                 intent.putExtra(getString(R.string.category), getString(R.string.accessory));
                 //noinspection deprecation
                 startActivityForResult(intent, ADD_PRODUCT_ACTIVITY_REQUEST_CODE);
             });
             addGame.setOnClickListener(v -> {
+                mediaPlayer.start();
                 Intent intent = new Intent(ProductCategoryActivity.this, AddProductActivity.class);
                 intent.putExtra(getString(R.string.category), getString(R.string.game));
                 //noinspection deprecation

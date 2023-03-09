@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,11 +35,13 @@ public class GalleryAdapter extends ArrayAdapter<Product> {
     private Bitmap bitmap;
     private URL url;
     private final long id;
+    private final MediaPlayer mediaPlayer;
     private final List<Product> filteredList;
     private final Product[] originalList;
 
     public GalleryAdapter(@NonNull Context context, Product[] arr, long id) {
         super(context, R.layout.gallery_item, arr);
+        mediaPlayer = MediaPlayer.create(context, R.raw.click);
         this.id = id;
         this.originalList = arr;
         this.filteredList = new ArrayList<>(Arrays.asList(arr));
@@ -74,6 +77,7 @@ public class GalleryAdapter extends ArrayAdapter<Product> {
         }
 
         view.setOnClickListener(v -> {
+            mediaPlayer.start();
             Intent intent;
             if (id == -1) {
                 intent = new Intent(getContext(), AddProductActivity.class);

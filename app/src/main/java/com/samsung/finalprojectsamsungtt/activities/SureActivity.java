@@ -1,5 +1,6 @@
 package com.samsung.finalprojectsamsungtt.activities;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -33,6 +34,7 @@ public class SureActivity extends AppCompatActivity {
         Button yes = findViewById(R.id.buttonYes);
         Button no = findViewById(R.id.buttonNo);
         DBConnector = new DBShop(this);
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.click);
         long id = getIntent().getLongExtra(getString(R.string.yes), -1);
         int code = getIntent().getIntExtra(getString(R.string.no), -1);
         long owner = getIntent().getLongExtra(getString(R.string.account), -1);
@@ -44,6 +46,7 @@ public class SureActivity extends AppCompatActivity {
         }
 
         yes.setOnClickListener(v -> {
+            mediaPlayer.start();
             switch (code) {
                 case 0:
                     DBConnector.deleteAcc(id);
@@ -70,7 +73,10 @@ public class SureActivity extends AppCompatActivity {
             setResult(RESULT_OK);
             finish();
         });
-        no.setOnClickListener(v -> finish());
+        no.setOnClickListener(v -> {
+            mediaPlayer.start();
+            finish();
+        });
 
     }
 
