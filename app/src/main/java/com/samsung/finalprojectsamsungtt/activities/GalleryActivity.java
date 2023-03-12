@@ -3,6 +3,7 @@ package com.samsung.finalprojectsamsungtt.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +31,7 @@ public class GalleryActivity extends AppCompatActivity {
     private GalleryAdapter adapter;
     private Button category;
     private int categoryCode;
+    private View loadingScreen;
     private long id;
 
     private final int CATEGORY_REQUEST_CODE = 1;
@@ -52,6 +54,7 @@ public class GalleryActivity extends AppCompatActivity {
         Button cart = findViewById(R.id.cart);
         category = findViewById(R.id.category);
         DBConnector = new DBShop(this);
+        loadingScreen = findViewById(R.id.loading_screen);
         final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.click);
         id = getIntent().getLongExtra(getString(R.string.account), -1);
         categoryCode = 0;
@@ -83,8 +86,8 @@ public class GalleryActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        adapter = new GalleryAdapter(this, getProducts(), id);
-        list.setAdapter(adapter);
+        loadingScreen.setVisibility(View.VISIBLE);
+        new LoadProductsTask().execute();
     }
 
     private Product[] getProducts() {
@@ -226,6 +229,24 @@ public class GalleryActivity extends AppCompatActivity {
         });
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @SuppressWarnings("deprecation")
+    @SuppressLint("StaticFieldLeak")
+    private class LoadProductsTask extends AsyncTask<Void, Void, Product[]> {
+        @Override
+        protected Product[] doInBackground(Void... voids) {
+            // Load products in background thread
+            return getProducts();
+        }
+
+        @Override
+        protected void onPostExecute(Product[] products) {
+            // Update adapter with loaded products and hide loading screen
+            adapter = new GalleryAdapter(GalleryActivity.this, products, id);
+            list.setAdapter(adapter);
+            loadingScreen.setVisibility(View.GONE);
+        }
     }
 
 }

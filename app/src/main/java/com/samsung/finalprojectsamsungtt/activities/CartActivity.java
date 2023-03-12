@@ -3,9 +3,11 @@ package com.samsung.finalprojectsamsungtt.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,6 +33,7 @@ public class CartActivity extends AppCompatActivity {
     private int categoryCode;
     private TextView totalPrice;
     private Button category;
+    private View loadingScreen;
 
     private final int ORDER_REQUEST_CODE = 1;
     private final int CATEGORY_REQUEST_CODE = 2;
@@ -54,6 +57,7 @@ public class CartActivity extends AppCompatActivity {
         category = findViewById(R.id.category);
         Button order = findViewById(R.id.order);
         DBConnector = new DBShop(this);
+        loadingScreen = findViewById(R.id.loading_screen);
         final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.click);
         id = getIntent().getLongExtra(getString(R.string.cart), -1);
         actionBar.setTitle("Cart");
@@ -83,8 +87,8 @@ public class CartActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        CartAdapter adapter = new CartAdapter(this, getSortedCartOrders());
-        list.setAdapter(adapter);
+        loadingScreen.setVisibility(View.VISIBLE);
+        new LoadProductsTask().execute();
         totalPrice.setText(getTotalPrice() + "$");
     }
 
@@ -254,5 +258,22 @@ public class CartActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @SuppressWarnings("deprecation")
+    @SuppressLint("StaticFieldLeak")
+    private class LoadProductsTask extends AsyncTask<Void, Void, Order[]> {
+        @Override
+        protected Order[] doInBackground(Void... voids) {
+            // Load products in background thread
+            return getSortedCartOrders();
+        }
+
+        @Override
+        protected void onPostExecute(Order[] orders) {
+            // Update adapter with loaded products and hide loading screen
+            CartAdapter adapter = new CartAdapter(CartActivity.this, orders);
+            list.setAdapter(adapter);
+            loadingScreen.setVisibility(View.GONE);
+        }
+    }
 
 }

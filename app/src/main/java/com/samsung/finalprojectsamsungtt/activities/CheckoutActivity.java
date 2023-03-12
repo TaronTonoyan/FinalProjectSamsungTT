@@ -46,6 +46,7 @@ public class CheckoutActivity extends AppCompatActivity {
         Account acc = DBConnector.selectAcc(id);
         total = getIntent().getFloatExtra(getString(R.string.total_price), 0);
         String orders = getIntent().getStringExtra(getString(R.string.order));
+        address.setText(DBConnector.selectAcc(id).getAddress());
 
         confirm.setOnClickListener(v -> {
             mediaPlayer.start();

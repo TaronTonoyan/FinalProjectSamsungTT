@@ -10,13 +10,14 @@
         app:showAsAction="ifRoom|collapseActionView" />
 
     <item
-        android:id="@+id/gallery"
-        android:title="@string/gallery"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/cart"
         android:title="@string/cart"
+        android:icon="@drawable/ic_baseline_shopping_cart_24"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+    <item
+        android:id="@+id/gallery"
+        android:title="@string/gallery"
         app:showAsAction="never" />
 
     <item
