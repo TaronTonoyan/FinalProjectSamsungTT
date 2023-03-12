@@ -1,5 +1,6 @@
 package com.samsung.finalprojectsamsungtt.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -32,6 +33,8 @@ public class GalleryActivity extends AppCompatActivity {
 
     private final int SORT_REQUEST_CODE = 1;
     private final int CART_ACTIVITY_REQUEST_CODE = 2;
+    private final int ACCOUNT_SETTINGS_ACTIVITY_REQUEST_CODE = 3;
+    private final int LOG_OUT_CONFIRMATION_REQUEST_CODE = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +122,9 @@ public class GalleryActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == -2) {
+            goToLoginPage();
+        }
         if (requestCode == SORT_REQUEST_CODE){
             if (resultCode == RESULT_OK) {
                 sortCode = data.getIntExtra(getString(R.string.category), 0);
@@ -129,10 +135,61 @@ public class GalleryActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), getString(R.string.order_delivered), Toast.LENGTH_SHORT).show();
             }
         }
+        if (requestCode == ACCOUNT_SETTINGS_ACTIVITY_REQUEST_CODE){
+            if (resultCode == RESULT_OK) {
+                goToLoginPage();
+            }
+        }
+        if (requestCode == LOG_OUT_CONFIRMATION_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                goToLoginPage();
+            }
+        }
     }
 
+    private void goToLoginPage() {
+        Intent intent = new Intent();
+        setResult(-2, intent);
+        finish();
+    }
+
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            case R.id.cart:
+                intent = new Intent(GalleryActivity.this, CartActivity.class);
+                intent.putExtra(getString(R.string.cart), id);
+                //noinspection deprecation
+                startActivityForResult(intent, CART_ACTIVITY_REQUEST_CODE);
+                return true;
+            case R.id.wishlist:
+                intent = new Intent(GalleryActivity.this, WishlistActivity.class);
+                intent.putExtra(getString(R.string.wishlist), id);
+                startActivity(intent);
+                return true;
+            case R.id.history:
+                intent = new Intent(GalleryActivity.this, HistoryActivity.class);
+                intent.putExtra(getString(R.string.account), id);
+                startActivity(intent);
+                return true;
+            case R.id.accountSettings:
+                intent = new Intent(GalleryActivity.this, AccountSettingsActivity.class);
+                intent.putExtra(getString(R.string.account), id);
+                //noinspection deprecation
+                startActivityForResult(intent, ACCOUNT_SETTINGS_ACTIVITY_REQUEST_CODE);
+                return true;
+            case R.id.logOut:
+                intent = new Intent(GalleryActivity.this, SureActivity.class);
+                intent.putExtra(getString(R.string.yes), id);
+                //noinspection deprecation
+                startActivityForResult(intent, LOG_OUT_CONFIRMATION_REQUEST_CODE);
+                return true;
+        }
         if (item.getItemId() == android.R.id.home) {
             this.finish();
             return true;

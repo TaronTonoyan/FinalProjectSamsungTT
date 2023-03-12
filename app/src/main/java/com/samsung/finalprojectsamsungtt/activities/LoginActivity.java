@@ -75,11 +75,11 @@ public class LoginActivity extends AppCompatActivity {
         } else if (acc == null) {
             Toast.makeText(getApplicationContext(), getString(R.string.acc_not_found), Toast.LENGTH_SHORT).show();
         } else {
-            Intent i = new Intent();
-            i.putExtra(getString(R.string.email), email);
-            i.putExtra(getString(R.string.password), password);
-            setResult(RESULT_OK, i);
-            i.putExtra(getString(R.string.account), rememberMe.isChecked());
+            Intent intent = new Intent();
+            intent.putExtra(getString(R.string.email), email);
+            intent.putExtra(getString(R.string.password), password);
+            setResult(RESULT_OK, intent);
+            intent.putExtra(getString(R.string.account), rememberMe.isChecked());
             finish();
         }
     }

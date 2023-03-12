@@ -46,9 +46,9 @@
     <string name="console">Gaming Console</string>
     <string name="accessory">Accessory</string>
     <string name="game">VideoGame</string>
-    <string name="gallery">go to gallery</string>
-    <string name="cart">cart</string>
-    <string name="wishlist">wishlist</string>
+    <string name="gallery">Gallery</string>
+    <string name="cart">Cart</string>
+    <string name="wishlist">Wishlist</string>
     <string name="total">total</string>
     <string name="account_settings">Account Settings</string>
     <string name="add_to_cart">add to cart</string>

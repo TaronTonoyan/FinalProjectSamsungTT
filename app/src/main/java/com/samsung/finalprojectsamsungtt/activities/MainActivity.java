@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     private final int CART_ACTIVITY_REQUEST_CODE = 3;
     private final int ACCOUNT_SETTINGS_ACTIVITY_REQUEST_CODE = 4;
     private final int LOG_OUT_CONFIRMATION_REQUEST_CODE = 5;
+    private final int GALLERY_ACTIVITY_CONFIRMATION_REQUEST_CODE = 6;
+    private final int WISHLIST_ACTIVITY_CONFIRMATION_REQUEST_CODE = 7;
+    private final int HISTORY_ACTIVITY_CONFIRMATION_REQUEST_CODE = 8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
             mediaPlayer.start();
             Intent intent = new Intent(MainActivity.this, GalleryActivity.class);
             intent.putExtra(getString(R.string.account), acc.getId());
-            startActivity(intent);
+            //noinspection deprecation
+            startActivityForResult(intent, GALLERY_ACTIVITY_CONFIRMATION_REQUEST_CODE);
         });
         cart.setOnClickListener(v -> {
             mediaPlayer.start();
@@ -75,7 +79,15 @@ public class MainActivity extends AppCompatActivity {
             mediaPlayer.start();
             Intent intent = new Intent(MainActivity.this, WishlistActivity.class);
             intent.putExtra(getString(R.string.wishlist), acc.getId());
-            startActivity(intent);
+            //noinspection deprecation
+            startActivityForResult(intent, WISHLIST_ACTIVITY_CONFIRMATION_REQUEST_CODE);
+        });
+        history.setOnClickListener(v -> {
+            mediaPlayer.start();
+            Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+            intent.putExtra(getString(R.string.account), acc.getId());
+            //noinspection deprecation
+            startActivityForResult(intent, HISTORY_ACTIVITY_CONFIRMATION_REQUEST_CODE);
         });
         accountSettings.setOnClickListener(v -> {
             mediaPlayer.start();
@@ -83,12 +95,6 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra(getString(R.string.account), acc.getId());
             //noinspection deprecation
             startActivityForResult(intent, ACCOUNT_SETTINGS_ACTIVITY_REQUEST_CODE);
-        });
-        history.setOnClickListener(v -> {
-            mediaPlayer.start();
-            Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
-            intent.putExtra(getString(R.string.account), acc.getId());
-            startActivity(intent);
         });
         logOut.setOnClickListener(v -> {
             mediaPlayer.start();
@@ -149,6 +155,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == -2) {
+            goToLoginPage();
+        }
         if (requestCode == LOGIN_ACTIVITY_REQUEST_CODE){
             if (resultCode == RESULT_OK) {
                 String accEmail = data.getStringExtra(getString(R.string.email));
