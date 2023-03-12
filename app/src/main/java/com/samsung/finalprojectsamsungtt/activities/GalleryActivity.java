@@ -28,10 +28,10 @@ public class GalleryActivity extends AppCompatActivity {
     private DBShop DBConnector;
     private ListView list;
     private GalleryAdapter adapter;
-    private int sortCode;
+    private int categoryCode;
     private long id;
 
-    private final int SORT_REQUEST_CODE = 1;
+    private final int CATEGORY_REQUEST_CODE = 1;
     private final int CART_ACTIVITY_REQUEST_CODE = 2;
     private final int ACCOUNT_SETTINGS_ACTIVITY_REQUEST_CODE = 3;
     private final int LOG_OUT_CONFIRMATION_REQUEST_CODE = 4;
@@ -53,7 +53,7 @@ public class GalleryActivity extends AppCompatActivity {
         DBConnector = new DBShop(this);
         final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.click);
         id = getIntent().getLongExtra(getString(R.string.account), -1);
-        sortCode = 0;
+        categoryCode = 0;
         cart.setVisibility(View.GONE);
 
         if (id > 0) {
@@ -75,7 +75,7 @@ public class GalleryActivity extends AppCompatActivity {
             Intent intent = new Intent(GalleryActivity.this, ProductCategoryActivity.class);
             intent.putExtra(getString(R.string.sort), true);
             //noinspection deprecation
-            startActivityForResult(intent, SORT_REQUEST_CODE);
+            startActivityForResult(intent, CATEGORY_REQUEST_CODE);
         });
     }
 
@@ -90,7 +90,7 @@ public class GalleryActivity extends AppCompatActivity {
         ArrayList<Product> productArr = DBConnector.selectAllProducts();
         ArrayList<Product> sortedArr = new ArrayList<>();
         for (int i = 0; i < productArr.size(); i++) {
-            switch (sortCode) {
+            switch (categoryCode) {
                 case 0:
                     sortedArr.add(productArr.get(i));
                     break;
@@ -125,9 +125,9 @@ public class GalleryActivity extends AppCompatActivity {
         if (resultCode == -2) {
             goToLoginPage();
         }
-        if (requestCode == SORT_REQUEST_CODE){
+        if (requestCode == CATEGORY_REQUEST_CODE){
             if (resultCode == RESULT_OK) {
-                sortCode = data.getIntExtra(getString(R.string.category), 0);
+                categoryCode = data.getIntExtra(getString(R.string.category), 0);
             }
         }
         if (requestCode == CART_ACTIVITY_REQUEST_CODE){
