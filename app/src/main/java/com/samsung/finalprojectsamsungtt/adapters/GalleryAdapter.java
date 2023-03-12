@@ -1,6 +1,7 @@
 package com.samsung.finalprojectsamsungtt.adapters;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -92,7 +93,7 @@ public class GalleryAdapter extends ArrayAdapter<Product> {
                 intent = new Intent(getContext(), ProductActivity.class);
                 intent.putExtra(getContext().getString(R.string.account), id);
                 intent.putExtra(getContext().getString(R.string.product), product.getId());
-                getContext().startActivity(intent);
+                ((Activity)getContext()).startActivityForResult(intent, 0);
             }
         });
 

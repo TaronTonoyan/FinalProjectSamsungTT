@@ -157,6 +157,8 @@ public class GalleryActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent intent;
+        int WISHLIST_ACTIVITY_REQUEST_CODE = 5;
+        int HISTORY_ACTIVITY_REQUEST_CODE = 6;
         switch (item.getItemId()) {
             case android.R.id.home:
                 this.finish();
@@ -170,12 +172,14 @@ public class GalleryActivity extends AppCompatActivity {
             case R.id.wishlist:
                 intent = new Intent(GalleryActivity.this, WishlistActivity.class);
                 intent.putExtra(getString(R.string.wishlist), id);
-                startActivity(intent);
+                //noinspection deprecation
+                startActivityForResult(intent, WISHLIST_ACTIVITY_REQUEST_CODE);
                 return true;
             case R.id.history:
                 intent = new Intent(GalleryActivity.this, HistoryActivity.class);
                 intent.putExtra(getString(R.string.account), id);
-                startActivity(intent);
+                //noinspection deprecation
+                startActivityForResult(intent, HISTORY_ACTIVITY_REQUEST_CODE);
                 return true;
             case R.id.accountSettings:
                 intent = new Intent(GalleryActivity.this, AccountSettingsActivity.class);
@@ -190,16 +194,12 @@ public class GalleryActivity extends AppCompatActivity {
                 startActivityForResult(intent, LOG_OUT_CONFIRMATION_REQUEST_CODE);
                 return true;
         }
-        if (item.getItemId() == android.R.id.home) {
-            this.finish();
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.options_menu, menu);
+        getMenuInflater().inflate(R.menu.gallery_menu, menu);
 
         SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setQueryHint(getString(R.string.search_hint));
