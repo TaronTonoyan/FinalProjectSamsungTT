@@ -28,6 +28,7 @@ public class GalleryActivity extends AppCompatActivity {
     private DBShop DBConnector;
     private ListView list;
     private GalleryAdapter adapter;
+    private Button category;
     private int categoryCode;
     private long id;
 
@@ -49,7 +50,7 @@ public class GalleryActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         list = findViewById(R.id.listView);
         Button cart = findViewById(R.id.cart);
-        Button sort = findViewById(R.id.sort);
+        category = findViewById(R.id.category);
         DBConnector = new DBShop(this);
         final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.click);
         id = getIntent().getLongExtra(getString(R.string.account), -1);
@@ -70,7 +71,7 @@ public class GalleryActivity extends AppCompatActivity {
         } else {
             actionBar.setTitle("Update Product");
         }
-        sort.setOnClickListener(v -> {
+        category.setOnClickListener(v -> {
             mediaPlayer.start();
             Intent intent = new Intent(GalleryActivity.this, ProductCategoryActivity.class);
             intent.putExtra(getString(R.string.sort), true);
@@ -92,19 +93,23 @@ public class GalleryActivity extends AppCompatActivity {
         for (int i = 0; i < productArr.size(); i++) {
             switch (categoryCode) {
                 case 0:
+                    category.setText(getString(R.string.category));
                     sortedArr.add(productArr.get(i));
                     break;
                 case 1:
+                    category.setText(getString(R.string.console));
                     if (productArr.get(i).getCategory().equals(getString(R.string.console))) {
                         sortedArr.add(productArr.get(i));
                     }
                     break;
                 case 2:
+                    category.setText(getString(R.string.accessory));
                     if (productArr.get(i).getCategory().equals(getString(R.string.accessory))) {
                         sortedArr.add(productArr.get(i));
                     }
                     break;
                 case 3:
+                    category.setText(getString(R.string.game));
                     if (productArr.get(i).getCategory().equals(getString(R.string.game))) {
                         sortedArr.add(productArr.get(i));
                     }

@@ -30,6 +30,7 @@ public class CartActivity extends AppCompatActivity {
     private ListView list;
     private int categoryCode;
     private TextView totalPrice;
+    private Button category;
 
     private final int ORDER_REQUEST_CODE = 1;
     private final int CATEGORY_REQUEST_CODE = 2;
@@ -50,7 +51,7 @@ public class CartActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         totalPrice = findViewById(R.id.priceTotal);
         list = findViewById(R.id.listView);
-        Button sort = findViewById(R.id.sort);
+        category = findViewById(R.id.category);
         Button order = findViewById(R.id.order);
         DBConnector = new DBShop(this);
         final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.click);
@@ -70,7 +71,7 @@ public class CartActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), getString(R.string.cart_empty), Toast.LENGTH_SHORT).show();
             }
         });
-        sort.setOnClickListener(v -> {
+        category.setOnClickListener(v -> {
             mediaPlayer.start();
             Intent intent = new Intent(CartActivity.this, ProductCategoryActivity.class);
             intent.putExtra(getString(R.string.sort), true);
@@ -125,19 +126,23 @@ public class CartActivity extends AppCompatActivity {
         for (int i = 0; i < cartArr.size(); i++) {
             switch (categoryCode) {
                 case 0:
+                    category.setText(getString(R.string.category));
                     sortedArr.add(cartArr.get(i));
                     break;
                 case 1:
+                    category.setText(getString(R.string.console));
                     if (DBConnector.selectProduct(cartArr.get(i).getProduct()).getCategory().equals(getString(R.string.console))) {
                         sortedArr.add(cartArr.get(i));
                     }
                     break;
                 case 2:
+                    category.setText(getString(R.string.accessory));
                     if (DBConnector.selectProduct(cartArr.get(i).getProduct()).getCategory().equals(getString(R.string.accessory))) {
                         sortedArr.add(cartArr.get(i));
                     }
                     break;
                 case 3:
+                    category.setText(getString(R.string.game));
                     if (DBConnector.selectProduct(cartArr.get(i).getProduct()).getCategory().equals(getString(R.string.game))) {
                         sortedArr.add(cartArr.get(i));
                     }
