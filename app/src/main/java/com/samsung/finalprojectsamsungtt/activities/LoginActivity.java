@@ -1,5 +1,8 @@
 package com.samsung.finalprojectsamsungtt.activities;
 
+
+import org.apache.commons.validator.routines.EmailValidator;
+
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -105,8 +108,13 @@ public class LoginActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 String accEmail = data.getStringExtra(getString(R.string.email));
                 String accPassword = data.getStringExtra(getString(R.string.password));
-                DBConnector.insertAcc(accEmail, accPassword, 0, null);
-                login(accEmail, accPassword);
+                boolean isValid = EmailValidator.getInstance().isValid(accEmail);
+                if (isValid) {
+                    DBConnector.insertAcc(accEmail, accPassword, 0, null);
+                    login(accEmail, accPassword);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Your email is not valid", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }
