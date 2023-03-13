@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
             login(email.getText().toString(), password.getText().toString());
         });
         register.setOnClickListener(v -> {
+            mediaPlayer.start();
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             //noinspection deprecation
             startActivityForResult(intent, REGISTER_ACTIVITY_REQUEST_CODE);
