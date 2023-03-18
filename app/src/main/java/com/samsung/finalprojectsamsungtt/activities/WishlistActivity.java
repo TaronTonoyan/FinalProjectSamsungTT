@@ -49,7 +49,6 @@ public class WishlistActivity extends AppCompatActivity {
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         list = findViewById(R.id.listView);
-        Button cart = findViewById(R.id.cart);
         category = findViewById(R.id.category);
         loadingScreen = findViewById(R.id.loading_screen);
         final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.click);
@@ -58,13 +57,6 @@ public class WishlistActivity extends AppCompatActivity {
         actionBar.setTitle("Wishlist");
         categoryCode = 0;
 
-        cart.setOnClickListener(v -> {
-            mediaPlayer.start();
-            Intent intent = new Intent(WishlistActivity.this, CartActivity.class);
-            intent.putExtra(getString(R.string.cart), id);
-            //noinspection deprecation
-            startActivityForResult(intent, CART_ACTIVITY_REQUEST_CODE);
-        });
         category.setOnClickListener(v -> {
             mediaPlayer.start();
             Intent intent = new Intent(WishlistActivity.this, ProductCategoryActivity.class);

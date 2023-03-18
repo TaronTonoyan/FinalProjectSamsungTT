@@ -105,7 +105,11 @@ public class ProductActivity extends AppCompatActivity {
                 DBConnector.deleteOrder(cartId);
             } else {
                 cart.setText(getString(R.string.remove_from_cart));
-                DBConnector.insertOrder(accId, productId, 0, Integer.parseInt(quantity.getText().toString()));
+                if (quantity.getText().toString().equals("")) {
+                    DBConnector.insertOrder(accId, productId, 0, 1);
+                } else {
+                    DBConnector.insertOrder(accId, productId, 0, Integer.parseInt(quantity.getText().toString()));
+                }
             }
         });
         wishlist.setOnClickListener(v -> {

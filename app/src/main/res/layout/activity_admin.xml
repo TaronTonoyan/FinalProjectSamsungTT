@@ -10,7 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/admin_text"
-        android:textSize="65sp"
+        android:textSize="34sp"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textStyle="italic"

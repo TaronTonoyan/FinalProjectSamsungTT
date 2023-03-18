@@ -11,7 +11,7 @@
         android:layout_height="0dp"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="34sp"
+        android:textSize="30sp"
         android:textStyle="italic"
         android:text="@string/add_admins_text"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"

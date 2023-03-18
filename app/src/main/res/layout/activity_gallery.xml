@@ -12,6 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toStartOf="@+id/verticalGuideline2"
+            app:layout_constraintStart_toStartOf="@+id/verticalGuideline1"
+            app:layout_constraintTop_toBottomOf="@+id/guideline1" />
+
         <Button
             android:id="@+id/category"
             android:layout_width="0dp"
@@ -20,32 +29,10 @@
             android:text="@string/category"
             android:textColor="@color/white"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/guideline2"
+            app:layout_constraintBottom_toBottomOf="@+id/guideline3"
             app:layout_constraintEnd_toStartOf="@+id/verticalGuideline2"
             app:layout_constraintStart_toStartOf="@+id/verticalGuideline1"
-            app:layout_constraintTop_toTopOf="@+id/guideline1" />
-
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline3"
-            app:layout_constraintEnd_toStartOf="@+id/verticalGuideline2"
-            app:layout_constraintStart_toStartOf="@+id/verticalGuideline1"
-            app:layout_constraintTop_toBottomOf="@+id/guideline2" />
-
-        <Button
-            android:id="@+id/cart"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_button"
-            android:text="@string/cart"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/guideline4"
-            app:layout_constraintEnd_toStartOf="@+id/verticalGuideline2"
-            app:layout_constraintStart_toStartOf="@+id/verticalGuideline1"
-            app:layout_constraintTop_toTopOf="@+id/guideline3" />
+            app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline1"
@@ -59,17 +46,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.2" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.8" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline4"
+            android:id="@+id/guideline3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"

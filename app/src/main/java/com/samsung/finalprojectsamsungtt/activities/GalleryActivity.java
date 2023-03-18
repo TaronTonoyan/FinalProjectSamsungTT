@@ -51,24 +51,15 @@ public class GalleryActivity extends AppCompatActivity {
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         list = findViewById(R.id.listView);
-        Button cart = findViewById(R.id.cart);
         category = findViewById(R.id.category);
         DBConnector = new DBShop(this);
         loadingScreen = findViewById(R.id.loading_screen);
         final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.click);
         id = getIntent().getLongExtra(getString(R.string.account), -1);
         categoryCode = 0;
-        cart.setVisibility(View.GONE);
 
         if (id > 0) {
             actionBar.setTitle("Gallery");
-            cart.setVisibility(View.VISIBLE);
-            cart.setOnClickListener(v -> {
-                Intent intent = new Intent(GalleryActivity.this, CartActivity.class);
-                intent.putExtra(getString(R.string.cart), id);
-                //noinspection deprecation
-                startActivityForResult(intent, CART_ACTIVITY_REQUEST_CODE);
-            });
         } else if (id == -2){
             actionBar.setTitle("Delete Product");
         } else {
@@ -207,7 +198,11 @@ public class GalleryActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.gallery_menu, menu);
+        if (id < 1) {
+            getMenuInflater().inflate(R.menu.admin_menu, menu);
+        } else {
+            getMenuInflater().inflate(R.menu.gallery_menu, menu);
+        }
 
         SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setQueryHint(getString(R.string.search_hint));

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -53,8 +54,10 @@ public class WishlistAdapter extends ArrayAdapter<Order> {
         ImageView image = convertView.findViewById(R.id.image);
         ((TextView) convertView.findViewById(R.id.name)).setText(product.getName());
         ((TextView) convertView.findViewById(R.id.price)).setText(product.getPrice() + "$");
+        EditText quantity = convertView.findViewById(R.id.quantity);
         Button removeFromWishlist = convertView.findViewById(R.id.removeWishlistItem);
         Button addToCart = convertView.findViewById(R.id.addToCart);
+        quantity.setHint(order.getQuantity() + "");
 
         try {
             url = new URL(product.getImage());
@@ -65,6 +68,11 @@ public class WishlistAdapter extends ArrayAdapter<Order> {
         } catch (MalformedURLException | InterruptedException e) {
             e.printStackTrace();
         }
+
+        quantity.setOnClickListener(v -> {
+            order.setQuantity(Integer.parseInt(quantity.getText().toString()));
+            DBConnector.updateOrder(order);
+        });
 
         removeFromWishlist.setOnClickListener(v -> {
             mediaPlayer.start();
@@ -109,5 +117,4 @@ public class WishlistAdapter extends ArrayAdapter<Order> {
             }
         }
     }
-
 }

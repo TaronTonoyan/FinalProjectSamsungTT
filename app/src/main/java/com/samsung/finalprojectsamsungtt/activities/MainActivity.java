@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
     private final int CART_ACTIVITY_REQUEST_CODE = 3;
     private final int ACCOUNT_SETTINGS_ACTIVITY_REQUEST_CODE = 4;
     private final int LOG_OUT_CONFIRMATION_REQUEST_CODE = 5;
-    private final int GALLERY_ACTIVITY_CONFIRMATION_REQUEST_CODE = 6;
-    private final int WISHLIST_ACTIVITY_CONFIRMATION_REQUEST_CODE = 7;
-    private final int HISTORY_ACTIVITY_CONFIRMATION_REQUEST_CODE = 8;
+    private final int GALLERY_ACTIVITY_REQUEST_CODE = 6;
+    private final int WISHLIST_ACTIVITY_REQUEST_CODE = 7;
+    private final int HISTORY_ACTIVITY_REQUEST_CODE = 8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, GalleryActivity.class);
             intent.putExtra(getString(R.string.account), acc.getId());
             //noinspection deprecation
-            startActivityForResult(intent, GALLERY_ACTIVITY_CONFIRMATION_REQUEST_CODE);
+            startActivityForResult(intent, GALLERY_ACTIVITY_REQUEST_CODE);
         });
         cart.setOnClickListener(v -> {
             mediaPlayer.start();
@@ -80,14 +80,14 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, WishlistActivity.class);
             intent.putExtra(getString(R.string.wishlist), acc.getId());
             //noinspection deprecation
-            startActivityForResult(intent, WISHLIST_ACTIVITY_CONFIRMATION_REQUEST_CODE);
+            startActivityForResult(intent, WISHLIST_ACTIVITY_REQUEST_CODE);
         });
         history.setOnClickListener(v -> {
             mediaPlayer.start();
             Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
             intent.putExtra(getString(R.string.account), acc.getId());
             //noinspection deprecation
-            startActivityForResult(intent, HISTORY_ACTIVITY_CONFIRMATION_REQUEST_CODE);
+            startActivityForResult(intent, HISTORY_ACTIVITY_REQUEST_CODE);
         });
         accountSettings.setOnClickListener(v -> {
             mediaPlayer.start();
@@ -141,6 +141,10 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(i, ADMIN_ACTIVITY_REQUEST_CODE);
         } else {
             text.setText(acc.getEmail());
+            Intent intent = new Intent(MainActivity.this, GalleryActivity.class);
+            intent.putExtra(getString(R.string.account), acc.getId());
+            //noinspection deprecation
+            startActivityForResult(intent, GALLERY_ACTIVITY_REQUEST_CODE);
         }
     }
 

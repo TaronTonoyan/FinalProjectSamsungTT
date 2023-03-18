@@ -34,7 +34,7 @@
         android:id="@+id/accountSettings"
         android:title="@string/account_settings"
         app:showAsAction="never" />
-
+    
     <item
         android:id="@+id/logOut"
         android:title="@string/log_out"
