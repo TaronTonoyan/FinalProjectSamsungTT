@@ -23,33 +23,33 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.LoginActivity" android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activities.RegisterActivity" android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity"  android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activities.AdminActivity" android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity"  android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activities.AddAdminsActivity" android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity"  android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activities.ProductCategoryActivity" android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity"  android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activities.AddProductActivity" android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity"  android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activities.GalleryActivity" android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity"  android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activities.ProductActivity" android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity"  android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activities.CartActivity" android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity"  android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activities.WishlistActivity" android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity"  android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activities.CheckoutActivity" android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity"  android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activities.AccountSettingsActivity" android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity"  android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activities.SureActivity" android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity"  android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activities.HistoryActivity" android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity"  android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>

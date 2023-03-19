@@ -68,7 +68,7 @@ public class SureActivity extends AppCompatActivity {
                     DBConnector.updateOrder(order);
                     break;
                 case 4:
-                    DBConnector.insertOrder(owner, product, 0, 1);
+                    DBConnector.insertOrder(owner, product, 0, quantity);
             }
             setResult(RESULT_OK);
             finish();

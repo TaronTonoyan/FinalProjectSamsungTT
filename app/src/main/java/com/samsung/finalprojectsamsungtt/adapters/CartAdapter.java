@@ -67,12 +67,6 @@ public class CartAdapter extends ArrayAdapter<Order> {
             e.printStackTrace();
         }
 
-        quantity.setOnClickListener(v -> {
-            mediaPlayer.start();
-            order.setQuantity(Integer.parseInt(quantity.getText().toString()));
-            quantity.setText(order.getQuantity() + "");
-        });
-
         save.setOnClickListener(v -> {
             mediaPlayer.start();
             Intent intent = new Intent(getContext(), SureActivity.class);
@@ -80,6 +74,11 @@ public class CartAdapter extends ArrayAdapter<Order> {
             intent.putExtra(getContext().getString(R.string.no), 3);
             intent.putExtra(getContext().getString(R.string.account), order.getOwner());
             intent.putExtra(getContext().getString(R.string.product), product.getId());
+            if (quantity.getText().toString().equals("")) {
+                order.setQuantity(1);
+            } else {
+                order.setQuantity(Integer.parseInt(quantity.getText().toString()));
+            }
             intent.putExtra(getContext().getString(R.string.quantity), order.getQuantity());
             getContext().startActivity(intent);
         });

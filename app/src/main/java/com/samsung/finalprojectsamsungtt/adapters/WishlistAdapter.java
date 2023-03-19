@@ -57,7 +57,6 @@ public class WishlistAdapter extends ArrayAdapter<Order> {
         EditText quantity = convertView.findViewById(R.id.quantity);
         Button removeFromWishlist = convertView.findViewById(R.id.removeWishlistItem);
         Button addToCart = convertView.findViewById(R.id.addToCart);
-        quantity.setHint(order.getQuantity() + "");
 
         try {
             url = new URL(product.getImage());
@@ -68,11 +67,6 @@ public class WishlistAdapter extends ArrayAdapter<Order> {
         } catch (MalformedURLException | InterruptedException e) {
             e.printStackTrace();
         }
-
-        quantity.setOnClickListener(v -> {
-            order.setQuantity(Integer.parseInt(quantity.getText().toString()));
-            DBConnector.updateOrder(order);
-        });
 
         removeFromWishlist.setOnClickListener(v -> {
             mediaPlayer.start();
@@ -89,6 +83,11 @@ public class WishlistAdapter extends ArrayAdapter<Order> {
                 Intent intent = new Intent(getContext(), SureActivity.class);
                 intent.putExtra(getContext().getString(R.string.account), order.getOwner());
                 intent.putExtra(getContext().getString(R.string.product), order.getProduct());
+                if (quantity.getText().toString().equals("")) {
+                    intent.putExtra(getContext().getString(R.string.quantity), 1);
+                } else {
+                    intent.putExtra(getContext().getString(R.string.quantity), Integer.parseInt(quantity.getText().toString()));
+                }
                 intent.putExtra(getContext().getString(R.string.no), 4);
                 getContext().startActivity(intent);
             });
