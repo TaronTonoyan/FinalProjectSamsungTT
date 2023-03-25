@@ -131,7 +131,7 @@ public class HistoryActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.options_menu, menu);
+        getMenuInflater().inflate(R.menu.navigation_menu, menu);
 
         return super.onCreateOptionsMenu(menu);
     }

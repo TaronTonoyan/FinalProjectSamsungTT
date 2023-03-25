@@ -4,13 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <item
-        android:id="@+id/search"
-        android:title="@string/search_title"
-        android:icon="@drawable/ic_baseline_search_24"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="ifRoom|collapseActionView" />
-
-    <item
         android:id="@+id/navbar"
         android:title="@string/navbar"
         android:icon="@drawable/ic_baseline_dehaze_24"
