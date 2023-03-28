@@ -50,7 +50,7 @@ public class HistoryActivity extends AppCompatActivity {
         StringBuilder ans = new StringBuilder();
         for (int i = 0; i < arr.size(); i++) {
             if (arr.get(i).getOwner() == id) {
-                ans.append(arr.get(i).getAddress()).append(": ").append(arr.get(i).getPrice()).append("$\n").append(arr.get(i).getOrders());
+                ans.append(arr.get(i).getAddress()).append(": ").append(arr.get(i).getPrice()).append("$\n").append(arr.get(i).getOrders()).append("\n");
             }
         }
         return ans.toString();
