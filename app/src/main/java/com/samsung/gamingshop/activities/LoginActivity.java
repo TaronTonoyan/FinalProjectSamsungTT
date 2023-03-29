@@ -99,6 +99,12 @@ public class LoginActivity extends AppCompatActivity {
         }
         if (newEmail) {
             DBConnector.insertAcc(email, password, 1, null);
+
+            DBConnector.insertProduct("Sony Playstation 5", 499.99, getString(R.string.console), "(PlayStation 5) The latest Sony PlayStation introduced in November 2020. Powered by an eight-core AMD Zen 2 CPU and custom AMD " +
+                    "Radon GPU, the PS5 is offered in two models: with and without a 4K Blu-ray drive. Supporting a 120Hz video refresh, the PS5 is considerably more powerful than the PS4 and PS4 Pro.", "https://media.direct.playstation.com/is/image/sierialto/PS5-digital-edition-front-with-dualsense");
+            DBConnector.insertProduct("Sony Playstation 4", 399.99, getString(R.string.console), "The PlayStation 4 (PS4) is a home video game console developed by Sony Interactive Entertainment. Announced as the successor to the PlayStation 3 in February 2013, it was launched on November 15, 2013, in North America, November 29, 2013 in Europe, South America and Australia, and on February 22, 2014 in Japan. A console of the eighth generation, it competes with Microsoft's Xbox One and Nintendo's Wii U and Switch.", "https://media.direct.playstation.com/is/image/sierialto/PS4-slim-console-standing-with-dualshock4");
+            DBConnector.insertProduct("PS5 Controller", 59.99, getString(R.string.accessory), "The DualSense wireless controller for PS5 offers immersive haptic feedback2, dynamic adaptive triggers2 and a built-in microphone, all integrated into an iconic design.", "https://m.media-amazon.com/images/I/612bjwBuobS.jpg");
+            DBConnector.insertProduct("PS4 Controller", 49.99, getString(R.string.accessory), "The DualShock 4 features the following buttons: PS button, SHARE button, OPTIONS button, directional buttons, action buttons (triangle, circle, cross, square), shoulder buttons (R1/L1), triggers (R2/L2), analog stick click buttons (L3/R3), and a touch pad click button.", "https://media.direct.playstation.com/is/image/sierialto/dualshock-ps4-controller-red-accessory-front");
         }
     }
 
