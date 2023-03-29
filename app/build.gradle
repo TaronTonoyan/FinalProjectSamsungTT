@@ -7,7 +7,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.samsung.finalprojectsamsungtt"
+        applicationId "com.samsung.gamingshop"
         minSdk 23
         targetSdk 33
         versionCode 1
@@ -26,7 +26,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    namespace 'com.samsung.finalprojectsamsungtt'
+    namespace 'com.samsung.gamingshop'
 }
 
 dependencies {

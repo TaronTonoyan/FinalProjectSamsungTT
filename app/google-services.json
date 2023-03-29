@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:998360563467:android:26ff6e6cc9f1d2f83d2c0e",
         "android_client_info": {
-          "package_name": "com.samsung.finalprojectsamsungtt"
+          "package_name": "com.samsung.gamingshop"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "998360563467-t57v5phkbl3nrrjrtie9f9l920qh1r0a.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.samsung.finalprojectsamsungtt",
+            "package_name": "com.samsung.gamingshop",
             "certificate_hash": "2215c8d597ca861257d277eb8b6488046e3be438"
           }
         },
