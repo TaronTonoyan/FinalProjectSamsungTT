@@ -1,5 +1,6 @@
 # Gaming Shop
 Video URL: https://youtu.be/mRUe4drsbII
+
 Presentation URL: https://docs.google.com/presentation/d/1i1W11WsB1MRzntD3-nIEVKZu2_zWnONZ5owBmzRTQAc/edit?usp=sharing
 
 This is my final project for Samsung Innovation Campus and Harvard CS50.
